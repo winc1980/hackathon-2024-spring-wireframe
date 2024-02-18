@@ -9,7 +9,14 @@
     <title>サービス名</title>
   </head>
   <body>
-    <!-- これは、ホーム画面のページです。 -->
+    <!-- 
+        * これは、ホーム画面のページです。 
+        * id名やclass名の命名は、長くてもわかりやすさを優先しています
+        * idはflaskで分割して使用することを想定し、同じURLに2つ存在しないものにつけています。ただし、id="username"のように、このページ内では重複しているものもあります
+        * class名は、繰り返し使用するであろう要素につけています
+        * ワイヤーフレームの「チャレンジ」は「ミッション」で統一しています
+        * containerではなくwrapperという単語を使用しています
+    -->
     <!-- header: ホーム, ミッション, マイページにも使用 -->
     <header id="header">
       <a href="/"><img src="" alt="" id="logo" /></a>
@@ -96,7 +103,7 @@
         <div id="self-introduction-username">ユーザ名</div>
       </div>
       <div id="mission-edit-wrapper">
-        <div id="current-mission">参加中のチャレンジ</div>
+        <div id="current-mission">参加中のミッション</div>
         <div id="profile-edit" role="button">プロフィールを編集</div>
       </div>
     </div>
