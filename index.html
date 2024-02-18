@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- normalize cssを適用しています -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/>
+    <link rel="stylesheet" href="style.css" />
+    <title>サービス名</title>
+  </head>
+  <body>
+    <!-- これは、ホーム画面のページです。 -->
+    <!-- header: ホーム, ミッション, マイページにも使用 -->
+    <header id="header">
+      <a href="/"><img src="" alt="" id="logo" /></a>
+      <a href="/login" role="button">ログイン</a>
+      <a href="/signin" role="button">新規登録ボタン</a>
+    </header>
+
+    <!-- SP用のnav: 画面下に固定。ホーム, ミッション, マイページにも使用-->
+    <nav id="sp-nav">
+      <ul id="sp-nav-list">
+        <li class="sp-nav-item">
+          <a href="/" class="sp-nav-item-link">TLのホームボタン</a>
+        </li>
+        <li class="sp-nav-item">
+          <a href="/mission" class="sp-nav-item-link">ミッション</a>
+        </li>
+        <li class="sp-nav-item">
+          <a href="/profile" class="sp-nav-item-link">プロフィール</a>
+        </li>
+      </ul>
+    </nav>
+    <a href="" class="sp-nav-item-link">投稿を作成</a>
+    <div role="button"></div>
+
+    <!-- PC用のnav: 画面の横幅の3/1の幅で、画面横に固定。ホーム, ミッション, マイページにも使用。-->
+    <nav id="pc-nav">
+      <ul id="pc-nav-list">
+        <li class="pc-nav-item">
+          <a href="/" class="pc-nav-item-link">ロゴ</a>
+        </li>
+        <li class="pc-nav-item">
+          <a href="/mission" class="pc-nav-item-link">ミッション</a>
+        </li>
+        <li class="pc-nav-item">
+          <a href="/" class="pc-nav-item-link">ホーム</a>
+        </li>
+        <li class="pc-nav-item">
+          <a href="/create" class="pc-nav-item-link">投稿を作成</a>
+        </li>
+        <li class="pc-nav-item">
+          <a href="/profile" class="pc-nav-item-link">プロフィール</a>
+        </li>
+        <li class="pc-nav-item">
+          <a href="/login" class="pc-nav-item-link">ログイン</a>
+        </li>
+        <li class="pc-nav-item">
+          <a href="/signin" class="pc-nav-item-link">サインイン</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 投稿: 
+        CSSの注意点: 画面幅が960px以下は2列、それ以上は3列で表示。ただしプロフィールページでは1列。
+        使用するページ: ミッション、プロフィール -->
+    <div id="posts">
+      <!-- プロフィール画面で使用する順番メニュー -->
+      <div id="profile-order-menu">
+        <div id="sort-by-created-desc">新着順に並べ替え</div>
+        <div id="group-by-mission">ミッションごと</div>
+      </div>
+
+      <!-- ホーム画面で使用する順番メニュー -->
+      <div id="home-order-menu">
+        <div id="sort-by-favorites">いいね順</div>
+        <div id="sort-by-created-desc">新しい順</div>
+      </div>
+
+      <!-- cssの注意点: 複数のポストを囲むものなので、post"s"-wrapperとなっています。複数形に注意してね -->
+      <div id="posts-wrapper">
+        <article class="post">
+          <div class="post-img-wrapper">
+            <img src="" alt="" class="post-img" />
+          </div>
+        </article>
+      </div>
+
+    </div>
+
+    <!-- 自己紹介スペース:
+        使用するページ: プロフィールで使用。 -->
+    <div id="self-introduction">
+      <div id="icon-username-wrapper">
+        <img src="" alt="" id="self-introduction-icon" />
+        <div id="self-introduction-username">ユーザ名</div>
+      </div>
+      <div id="mission-edit-wrapper">
+        <div id="current-mission">参加中のチャレンジ</div>
+        <div id="profile-edit" role="button">プロフィールを編集</div>
+      </div>
+    </div>
+
+    <!-- 未定ですがログインと登録画面も作成してみました。
+        バックエンド：ユーザー名は一意にする必要があるから、emailで登録してもらった方が
+                   「そのユーザー名は使われています」みたいなことが減るから良さそう？
+        フロント：usernameならtype="text", emailならtype="email"。
+                提出ボタンはログイン画面なら「ログイン」, サインイン画面なら「サインイン」にする
+                id="signin"は、ログインの時は、id="login"にする。
+    -->
+    <form action="" method="POST" id="signin">
+      <label for="username">ユーザー名</label>
+      <input type="text" name="username" id="username" />
+      <label for="password">パスワード</label>
+      <input type="password" id="password" />
+      <input type="button" value="登録する" />
+    </form>
+
+    <!-- 未定ですが設定画面も作成しました。usernameかemailかはログイン画面の時と同様 -->
+    <form action="" method="POST" id="settings">
+      <label for="username">ユーザー名</label>
+      <input type="text" name="username" id="username" />
+      <label for="password">パスワード</label>
+      <input type="password" id="password" />
+      <input type="button" value="変更する" />
+    </form>
+  </body>
+</html>
