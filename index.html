@@ -108,6 +108,15 @@
       </div>
     </div>
 
+    <!-- 投稿作成 -->
+    <form action="" method="POST" id="signin">
+      <label for="caption">キャプション</label>
+      <input type="text" name="caption" id="caption" />
+      <label for="image-data">画像</label>
+      <input type="file" accept="image/*" id="image-data"/>
+      <input type="submit" value="投稿する" />
+    </form>
+
     <!-- 未定ですがログインと登録画面も作成してみました。
         バックエンド：ユーザー名は一意にする必要があるから、emailで登録してもらった方が
                    「そのユーザー名は使われています」みたいなことが減るから良さそう？
@@ -120,7 +129,7 @@
       <input type="text" name="username" id="username" />
       <label for="password">パスワード</label>
       <input type="password" id="password" />
-      <input type="button" value="登録する" />
+      <input type="submit" value="登録する" />
     </form>
 
     <!-- 未定ですが設定画面も作成しました。usernameかemailかはログイン画面の時と同様 -->
@@ -129,7 +138,7 @@
       <input type="text" name="username" id="username" />
       <label for="password">パスワード</label>
       <input type="password" id="password" />
-      <input type="button" value="変更する" />
+      <input type="submit" value="変更する" />
     </form>
   </body>
 </html>
