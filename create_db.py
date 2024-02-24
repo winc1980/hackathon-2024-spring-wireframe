@@ -1,11 +1,18 @@
-import mysql.connector
+#このモジュールは、mysqlを触ったことがある人だけ実行して下さい！！！
+
+import pymysql.cursors
+# この辺使えないので、pymysqlがおすすめ
+# mysql-connector
+# mysql-connector-python
+# mysql-connector-python-rf
 
 # MySQLに接続
-mydb = mysql.connector.connect(
-  host="randaction.mysql.pythonanywhere-services.com",
-  user="randaction",
-  password="2024-spring-hackathon-group2",
-  database="randaction$randaction"
+#mydbは、デプロイ先の環境や手元の環境に合わせて変えること
+mydb = pymysql.connect(
+  host="localhost",
+  user="root",
+  password="password",
+  database="randaction"
 )
 
 mycursor = mydb.cursor()
@@ -16,7 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL,
     email VARCHAR(255) UNIQUE,
-    password VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
     image LONGBLOB
 )
 """
