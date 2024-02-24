@@ -1,0 +1,31 @@
+{% extends "base.html" %}{% block title %}Profile - Randaction{% endblock %}
+{% block content %}
+<!-- 自己紹介スペース:
+        使用するページ: プロフィールで使用。 -->
+<div id="self-introduction">
+  <div id="icon-username-wrapper">
+    <img src="" alt="" id="self-introduction-icon" />
+    <div id="self-introduction-username">ユーザ名</div>
+  </div>
+  <div id="mission-edit-wrapper">
+    <div id="current-mission">参加中のミッション</div>
+    <div id="profile-edit" role="button">プロフィールを編集</div>
+  </div>
+</div>
+
+<!-- プロフィール画面で使用する順番メニュー -->
+<div id="profile-order-menu">
+  <div id="sort-by-created-desc">新着順に並べ替え</div>
+  <div id="group-by-mission">ミッションごと</div>
+</div>
+
+<!-- cssの注意点: 複数のポストを囲むものなので、post"s"-wrapperとなっています。複数形に注意してね -->
+<h2>自分の投稿</h2>
+<div id="posts-wrapper">
+  <article class="post">
+    <div class="post-img-wrapper">
+      <img src="" alt="" class="post-img" />
+    </div>
+  </article>
+</div>
+{% endblock %}

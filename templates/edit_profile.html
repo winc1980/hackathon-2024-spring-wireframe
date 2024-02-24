@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Edit Profile - Randaction{% endblock %}
+{% block content %}
+
+<!-- edit_profile 画面 usernameかemailかはログイン画面の時と同様 -->
+<form action="" method="POST" id="settings">
+    <label for="username">ユーザー名</label>
+    <input type="text" name="username" id="username" />
+    <label for="email">メールアドレス</label>
+    <input type="email" name="email" id="email" />
+    <label for="password">パスワード</label>
+    <input type="password" id="password" />
+    <input type="submit" value="変更する" />
+</form>
+
+{% endblock %}
