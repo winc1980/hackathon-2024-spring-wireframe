@@ -17,13 +17,13 @@
 
     <!-- signup_form -->
     <h2>登録</h2>
-    <form method="POST">
+    <form method="POST" class="container" id="signup">
       <!-- CSRF対策(トークンが生成される) -->
       {{ signup_form.hidden_tag() }}
-      <div>{{ signup_form.username.label }} {{ signup_form.username() }}</div>
-      <div>{{ signup_form.email.label }} {{ signup_form.email() }}</div>
-      <div>{{ signup_form.password.label }} {{ signup_form.password() }}</div>
-      <div>
+      <div class="row">{{ signup_form.username.label }} {{ signup_form.username() }}</div>
+      <div class="row">{{ signup_form.email.label }} {{ signup_form.email() }}</div>
+      <div class="row">{{ signup_form.password.label }} {{ signup_form.password() }}</div>
+      <div class="row">
         {{ signup_form.pass_confirm.label }} {{ signup_form.pass_confirm() }}
       </div>
       {{ signup_form.submit() }}
@@ -31,11 +31,11 @@
 
     <!-- login_form -->
     <h2>ログイン</h2>
-    <form method="POST">
+    <form method="POST" class="container" id="login">
       <!-- CSRF対策(トークンが生成される) -->
       {{ login_form.hidden_tag() }}
-      <div>{{ login_form.username.label }} {{ login_form.username() }}</div>
-      <div>{{ login_form.password.label }} {{ login_form.password() }}</div>
+      <div class="row">{{ login_form.username.label }} {{ login_form.username() }}</div>
+      <div class="row">{{ login_form.password.label }} {{ login_form.password() }}</div>
       {{ login_form.submit() }}
     </form>
   </body>

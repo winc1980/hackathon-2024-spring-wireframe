@@ -6,6 +6,15 @@
 * できるだけ、htmlの親要素のcss(レイアウトやコンテンツ幅の指定など)→小要素のcss(文字の大きさや色など)という順番で記述しましょう
 */
 
+html {
+    font-size: 16px; /*他の場所で1remというサイズ指定をすると16px, 2remは16*2pxとなる*/
+    box-sizing: border-box;
+}
+
+.selector-for-some-widget {
+    /* これは、bootstrapを使用する際に、box-sizingを変更する */
+    box-sizing: border-box;
+  }
 
 /* profile プロフィール ここから */
 
@@ -19,3 +28,16 @@
 
 
 /* signup_login.htmlのcss ここまで */
+
+
+
+
+/* SP版のCSSはここから書いてね */
+@media screen and (max-width: 576px) {
+    /* signup_login.htmlのcssここから */
+    #signup {
+        width: 100%;
+        padding: 1rem;
+    }
+    /* signup_login.htmlのcssここまで */
+}
