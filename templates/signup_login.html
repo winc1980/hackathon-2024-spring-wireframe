@@ -14,17 +14,9 @@
     <!-- ログインと登録画面
         バックエンド：ユーザー名は一意にする必要があるから、emailで登録してもらった方が良さそう？
     -->
-    <form action="/entry" method="POST" id="entry">
-      <label for="username">ユーザー名</label>
-      <input type="text" name="username" id="username" />
-      <label for="email">メールアドレス</label>
-      <input type="email" name="email" id="email" />
-      <label for="password">パスワード</label>
-      <input type="password" id="password" />
-      <input type="submit" value="サインイン" />
-    </form>
 
     <!-- signup_form -->
+    <h2>登録</h2>
     <form method="POST">
       <!-- CSRF対策(トークンが生成される) -->
       {{ signup_form.hidden_tag() }}
@@ -38,15 +30,12 @@
     </form>
 
     <!-- login_form -->
+    <h2>ログイン</h2>
     <form method="POST">
       <!-- CSRF対策(トークンが生成される) -->
       {{ login_form.hidden_tag() }}
       <div>{{ login_form.username.label }} {{ login_form.username() }}</div>
-      <div>{{ login_form.email.label }} {{ login_form.email() }}</div>
       <div>{{ login_form.password.label }} {{ login_form.password() }}</div>
-      <div>
-        {{ login_form.pass_confirm.label }} {{ login_form.pass_confirm() }}
-      </div>
       {{ login_form.submit() }}
     </form>
   </body>
