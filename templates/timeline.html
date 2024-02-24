@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block title %}Top - Randaction{% endblock %}
+{%block content %}
+<!-- 
+        * これは、ホーム画面のページです。 
+        * id名やclass名の命名は、長くてもわかりやすさを優先しています
+        * idはflaskで分割して使用することを想定し、同じURLに2つ存在しないものにつけています。ただし、id="username"のように、このページ内では重複しているものもあります
+        * class名は、繰り返し使用するであろう要素につけています
+        * ワイヤーフレームの「チャレンジ」は「ミッション」で統一しています
+        * containerではなくwrapperという単語を使用しています
+    -->
+
+<!-- 投稿: 
+        CSSの注意点: 画面幅が960px以下は2列、それ以上は3列で表示。ただしプロフィールページでは1列。
+        使用するページ: ミッション、プロフィール -->
+<div id="posts">
+  <!-- ホーム画面で使用する順番メニュー -->
+  <div id="home-order-menu">
+    <div id="sort-by-favorites">いいね順</div>
+    <div id="sort-by-created-desc">新しい順</div>
+  </div>
+
+  <!-- cssの注意点: 複数のポストを囲むものなので、post"s"-wrapperとなっています。複数形に注意してね -->
+  <div id="posts-wrapper">
+    <article class="post">
+      <div class="post-img-wrapper">
+        <img src="" alt="" class="post-img" />
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- 投稿作成 -->
+<form action="" method="POST" id="signin">
+  <label for="caption">キャプション</label>
+  <input type="text" name="caption" id="caption" />
+  <label for="image-data">画像</label>
+  <input type="file" accept="image/*" id="image-data" />
+  <input type="submit" value="投稿する" />
+</form>
+
+{% endblock %}
