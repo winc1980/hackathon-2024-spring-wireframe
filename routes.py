@@ -69,11 +69,50 @@ def entry():
 
     return render_template('signup_login.html', signup_form=signup_form, login_form=login_form)
 
+
+class SendPost(FlaskForm):
+        caption = StringField('caption', validators=[DataRequired()])
+        image_data = StringField('image_data')
+        # created_at = StringField('created_at', validators=[DataRequired()])
+        # user_id = StringField('user_id', validators=[DataRequired()])
+        mission_title = StringField('mission_title', validators=[DataRequired()])
+        submit = SubmitField('投稿')
+        
 # timeline
-# profile
-@app.route('/', methods=['GET'])
+@app.route('/timeline', methods=['GET'])
 def timeline():
-    return render_template('timeline.html')
+        
+    # 新しい順に投稿を取得
+    posts = Post.query.order_by(desc(Post.created_at)).all()
+    all_posts = [post.to_dict() for post in posts]
+    send_post = SendPost()
+    return render_template('timeline.html', all_posts=all_posts, send_post=send_post)
+# jsonify(all_posts)
+
+
+
+@app.route('/send_post', methods=['POST'])
+def send_post():
+    send_post = SendPost()
+    
+    if send_post.validate_on_submit():
+        new_post = Post(
+            caption = send_post.caption.data,
+            image_data = send_post.image_data.data,
+            user_id = current_user.id,
+            mission_title = send_post.mission_title.data,
+            
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        
+    return redirect(url_for('timeline'))
+        # caption = StringField('caption', validators=[DataRequired()])
+        # image = StringField('image', validators=[DataRequired()])
+# profile
+# @app.route('/', methods=['GET'])
+# def timeline():
+#     return render_template('timeline.html')
 
 
 # profile
