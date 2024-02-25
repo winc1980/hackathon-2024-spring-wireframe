@@ -31,7 +31,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, default=1)
     fav_count = db.Column(db.Integer, nullable=True, default=0) #いいねの数
     mission_title = db.Column(db.String(1000), nullable=True)
-    mission = db.relationship('Mission', backref=db.backref('posts', lazy='dynamic'))
+    # mission = db.relationship('Mission', backref=db.backref('posts', lazy='dynamic'))
 
 
     def to_dict(self):
@@ -55,14 +55,15 @@ class Mission(db.Model):
     __tablename__ = "missions"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(225), nullable=False, default="ミッション")
-    content = db.Column(db.String(1000), nullable=True) #missionの詳細ページを作成するなら必要。nullでもOK
+    # content = db.Column(db.String(1000), nullable=True) #missionの詳細ページを作成するなら必要。nullでもOK
     count = db.Column(db.Integer, nullable=False, default=0)
     start_time = db.Column(db.DateTime, nullable=True) #Pythonのコードで日本のDateTimeに直してからデータベースに格納すること
     end_time = db.Column(db.DateTime, nullable=True) #Pythonのコードで日本のDateTimeに直してからデータベースに格納すること
 
 class Follow(db.Model):
     __tablename__ = "follows"
-    follower_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, primary_key=True)
-    followed_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False,  primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    follower_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    followed_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.current_timestamp())
 
