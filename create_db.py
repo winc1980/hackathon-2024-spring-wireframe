@@ -4,7 +4,7 @@ import pymysql.cursors
 mydb = pymysql.connect(
     host="localhost",
     user="root",
-    password="password"
+    password="PASSWORD"
 )
 
 # カーソルを取得
