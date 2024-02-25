@@ -1,11 +1,12 @@
 from flask import render_template, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, login_required, logout_user
+from sqlalchemy import desc 
 from wtforms import StringField, PasswordField, SubmitField
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Email ,EqualTo
 from werkzeug.security import check_password_hash
 
-from . import app, db, login_manager
+from .import app, db, login_manager
 from .models import User, Post, Favorite, Mission, Follow
 
 @login_manager.user_loader
