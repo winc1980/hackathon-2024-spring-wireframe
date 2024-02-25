@@ -11,7 +11,7 @@ import pymysql.cursors
 mydb = pymysql.connect(
   host="localhost",
   user="root",
-  password="password",
+  password="t142337T",
   database="randaction"
 )
 
