@@ -4,9 +4,9 @@
 <!-- edit_profile 画面 usernameかemailかはログイン画面の時と同様 -->
 <form action="" method="POST" id="settings">
     <label for="username">ユーザー名</label>
-    <input type="text" name="username" id="username" />
+    <input type="text" name="username" id="username" value="{{user.username}}"/>
     <label for="email">メールアドレス</label>
-    <input type="email" name="email" id="email" />
+    <input type="email" name="email" id="email" value="{{user.email}}"/>
     <label for="password">パスワード</label>
     <input type="password" id="password" />
     <input type="submit" value="変更する" />
