@@ -70,6 +70,35 @@ def entry():
     return render_template('signup_login.html', signup_form=signup_form, login_form=login_form)
 
 # timeline
+
+# SendProfile
+class SendPost(FlaskForm):
+    caption = StringField('caption', validators=[DataRequired()])
+    image_data = StringField('image_data')
+    # created_at = StringField('created_at', validators=[DataRequired()])
+    # user_id = StringField('user_id', validators=[DataRequired()])
+    mission_title = StringField('mission_title', validators=[DataRequired()])
+    submit = SubmitField('投稿')
+
+@app.route('/send_post', methods=['POST'])
+def send_post():
+    send_post = SendPost()
+
+    if send_post.validate_on_submit():
+        new_post = Post(
+            caption = send_post.caption.data,
+            image_data = send_post.image_data.data,
+            user_id = current_user.id,
+            mission_title = send_post.mission_title.data,
+
+        )
+        db.session.add(new_post)
+        db.session.commit()
+
+    return redirect(url_for('timeline'))
+        # caption = StringField('caption', validators=[DataRequired()])
+        # image = StringField('image', validators=[DataRequired()])
+
 # profile
 @app.route('/', methods=['GET'])
 def timeline():
@@ -83,13 +112,14 @@ def profile(username):
     # ログインユーザーのプロフィール
     profile = User.query.filter_by(username=username).first()
     profile = {
-        'user_id':profile.user_id,
+        'user_id':profile.id,
         'username':profile.username,
         'caption': profile.caption,
         'image':profile.image,
         'randaction':profile.randaction,
         'follow_count':profile.follow_count,
         'follow_count':profile.follower_count,
+        'randaction':profile.randaction_count,
     }
 
     # ログインユーザーの投稿
@@ -103,6 +133,8 @@ def profile(username):
         Favorite.user_id == current_user.id
     ).all()
     my_favorite_posts = [my_favo.to_dict() for my_favo in my_favorite]
+
+    print(my_favorite_posts)
 
 
     return render_template(
