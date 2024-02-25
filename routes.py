@@ -81,9 +81,15 @@ def timeline():
 @login_required
 def profile(username):
     # ログインユーザーのプロフィール
+    profile = User.query.filter_by(username=username).first()
     profile = {
-        'username':current_user.username,
-        'content':current_user.content,
+        'user_id':profile.user_id,
+        'username':profile.username,
+        'caption': profile.caption,
+        'image':profile.image,
+        'randaction':profile.randaction,
+        'follow_count':profile.follow_count,
+        'follow_count':profile.follower_count,
     }
 
     # ログインユーザーの投稿
@@ -149,6 +155,8 @@ def edit_profile():
         return redirect(url_for('profile'))
 
     return render_template('edit_profile.html', profile=profile)
+
+
 
 # logout
 @app.route('/logout')

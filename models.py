@@ -34,6 +34,7 @@ class Post(db.Model):
     # mission = db.relationship('Mission', backref=db.backref('posts', lazy='dynamic'))
 
 
+
     def to_dict(self):
         return {
             'caption' : self.caption,

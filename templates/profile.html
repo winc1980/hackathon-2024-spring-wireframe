@@ -2,28 +2,39 @@
 {% block content %}
 <!-- 自己紹介スペース:
         使用するページ: プロフィールで使用。 -->
-<div id="header">
-</div>
+
+<body>
+
 <div id="self-introduction">
 </div>
   <div id="icon-username-wrapper">
-    <img src="" alt="" id="self-introduction-icon" />
-    <div id="self-introduction-username">ユーザ名</div>
+    <img src="{{ profile.image }}" alt="ユーザーアイコン" id="self-introduction-icon" />
+    <div id="self-introduction-username">{{ profile.username }}</div>
   </div>
   <div id="mission-edit-wrapper">
-    <div id="current-mission">参加中のミッション</div>
-    <div id="profile-edit" role="button">プロフィールを編集</div>
+    <!-- <div id="current-mission">参加中のミッション</div> -->
+    {{% if current_user.id == profile.user_id }}
+    <a href="/edit_profile" id="profile-edit" role="button">プロフィールを編集</a>
+    {{% else %}}
+    <a href="/follow">フォロー</a>
+    {{% endif %}}
+    <div id="count">
+      <p>{{ profile.randaction.count }}</p>
+      <p>{{ profile.follow_count }}</p>
+      <p>{{ profile.follower_count }}</p>
+    </div>
   </div>
+  <div>{{ profile.content }}</div>
 </div>
 
 <!-- プロフィール画面で使用する順番メニュー -->
 <div id="profile-order-menu">
-  <div id="sort-by-created-desc">新着順に並べ替え</div>
-  <div id="group-by-mission">ミッションごと</div>
+  <div id="sort-by-created-desc">randaction</div>
+  <div id="group-by-mission">いいね</div>
 </div>
 
 <!-- cssの注意点: 複数のポストを囲むものなので、post"s"-wrapperとなっています。複数形に注意してね -->
-<h2>自分の投稿</h2>
+<!-- <h2>自分の投稿</h2> -->
 <div id="posts-wrapper">
   <article class="post">
     <div class="post-img-wrapper">
@@ -32,3 +43,82 @@
   </article>
 </div>
 {% endblock %}
+
+<script>
+  var posts = {{ my_post }};
+  var my_favorite_posts = {{ my_favorite_posts }}
+  var postWrapper = document.getElementById('posts-wrapper');
+
+
+  var randaction = document.getElementById('sort-by-created-desc');
+  randaction.addEventListener('click', function() {
+    // posts.sort((a, b) => b.count, - a.count);
+    createRandaction(posts);
+  })
+
+  var sortFavorite = document.getElementById('group-by-mission');
+  sortFavorite.addEventListener('click', function() {
+    // posts.sort((a, b) => a.count, - b.count);
+    createRandaction(my_favorite_posts);
+  })
+
+  function createRandaction(posts) {
+    posts.array.forEach(post => {
+  // 投稿コンテナ
+  var article = document.createElement('article');
+
+  // プロフィール部分
+  var profileWrapper = document.createElement('div');
+
+  var profileImg = document.createElement('img');
+  profileImg.setAttribute('src', '{{ profile.image }}');
+
+  var username = document.createElement('p');
+  username.textContent = '{{ profile.username }}'
+
+  // 画像
+  var randactionImg = document.createElement('img');
+  randactionImg.setAttribute('class', 'randaction-img');
+  randactionImg.setAttribute('src', '{{ post.image_data }}');
+
+  // いいね構成
+  var favWrapper = document.createElement('div');
+  favWrapper.setAttribute('class', 'fav-wrapper');
+
+  var icon = document.createElement('i');
+  icon.setAttribute('class', 'ri-heart-line icon');
+
+  var favCount = document.createElement('p');
+  favCount.setAttribute('class', 'fav-count');
+  favCount.textContent = '{{ post.fav_count }}'
+
+  // キャプション
+  var captionWrapper = document.createElement('div');
+  captionWrapper.setAttribute('class', 'caption-wrapper');
+
+  var caption = document.cre('p');
+  caption.setAttribute('class', 'caption');
+  caption.textContent = '{{ post.caption }}';
+
+  profileWrapper.appendChild(profileImg);
+  profileWrapper.appendChild(username);
+
+  favWrapper.appendChild(icon);
+  favWrapper.appendChild(favCount);
+
+  captionWrapper.appendChild(caption);
+
+  article.appendChild(profileWrapper);
+  article.appendChild(randactionImg);
+  article.appendChild(favWrapper);
+  article.appendChild(captionWrapper);
+  });
+};
+
+
+
+
+
+</script>
+</body>
+
