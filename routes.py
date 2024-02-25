@@ -91,6 +91,7 @@ def profile(username):
         'follow_count':profile.follow_count,
         'follow_count':profile.follower_count,
     }
+    print(profile)
 
     # ログインユーザーの投稿
     posts = Post.query.filter_by(user_id=current_user.id).all()
