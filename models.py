@@ -26,7 +26,7 @@ class Post(db.Model):
     image_data = db.Column(db.LargeBinary, nullable=False)
     created_at = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.current_timestamp())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, default=1)
-    mission_title = db.Column(db.Integer, db.ForeignKey('missions.title'), nullable=True)
+    mission_id = db.Column(db.Integer, db.ForeignKey('missions.id'), nullable=True)
     mission = db.relationship('Mission', backref=db.backref('posts', lazy='dynamic'))
 
 
