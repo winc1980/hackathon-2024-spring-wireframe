@@ -73,7 +73,7 @@ def entry():
 # profile
 @app.route('/', methods=['GET'])
 def timeline():
-    return render_template('timeline.html')
+    return render_template('timeline.html', user=current_user)
 
 
 # profile
