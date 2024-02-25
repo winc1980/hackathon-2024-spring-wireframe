@@ -8,7 +8,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(255), nullable=True, unique=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(255))
     image = db.Column(db.LargeBinary, nullable=True)
     caption = db.Column(db.String(1000), nullable=True)
     follow_count = db.Column(db.Integer, nullable=True, default=0) #フォローの数
