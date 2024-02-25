@@ -17,7 +17,17 @@ html {
   }
 
 /* profile プロフィール ここから */
+#header{
+    height:30px;
+}
+    
+#self-introduction{
 
+}
+    
+#icon-username-wrapper  {
+    
+}  
 
 /* profile プロフィール ここまで */
 
