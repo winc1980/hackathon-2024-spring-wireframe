@@ -1,2 +1,5 @@
 .DS_Store
 **/__pycache__/**
+**/myenv/**
+/__init__.py
+/create_db.py
