@@ -17,7 +17,10 @@
     <!-- CSS や JavaScript のリンクなどの共通のヘッダー情報 -->
   </head>
   <body>
-    <!-- header: ホーム, ミッション, マイページにも使用 -->
+    <!-- PS, PC共通で、missionを常に上部に固定する -->
+    <div id="mission">ミッションをここに表示</div>
+
+    <!-- SP用のnav: 画面下と、画面右上。ホーム, ミッション, マイページにも使用-->
     <header id="header">
       <a href="/"><img src="" alt="" id="logo" /></a>
       <a href="/entry" role="button">ログイン</a>
@@ -25,21 +28,20 @@
       <a href="/logout" role="button">ログアウト</a>
     </header>
 
-    <!-- SP用のnav: 画面下に固定。ホーム, ミッション, マイページにも使用-->
+
     <nav id="sp-nav">
       <ul id="sp-nav-list">
         <li class="sp-nav-item">
           <a href="/" class="sp-nav-item-link">タイムライン</a>
         </li>
         <li class="sp-nav-item">
-          <a href="/mission" class="sp-nav-item-link">ミッション</a>
+          <a href="/create" class="sp-nav-item-link">投稿作成ボタン</a>
         </li>
         <li class="sp-nav-item">
           <a href="/profile" class="sp-nav-item-link">プロフィール</a>
         </li>
       </ul>
     </nav>
-    <a href="" class="sp-nav-item-link">投稿作成ボタン</a>
     <div role="button"></div>
 
     <!-- PC用のnav: 画面の横幅の3/1の幅で、画面横に固定。ホーム, ミッション, マイページにも使用。-->
@@ -47,9 +49,6 @@
       <ul id="pc-nav-list">
         <li class="pc-nav-item">
           <a href="/" class="pc-nav-item-link">ロゴ</a>
-        </li>
-        <li class="pc-nav-item">
-          <a href="/mission" class="pc-nav-item-link">ミッション</a>
         </li>
         <li class="pc-nav-item">
           <a href="/" class="pc-nav-item-link">ホーム</a>
@@ -60,19 +59,17 @@
         <li class="pc-nav-item">
           <a href="/profile" class="pc-nav-item-link">プロフィール</a>
         </li>
+
+        <!-- 以下の2つはuser情報があったらログアウト、user情報がない場合はentryを返す -->
         <li class="pc-nav-item">
-          <a href="/login" class="pc-nav-item-link">ログイン</a>
+          <a href="/logout" class="pc-nav-item-link">ログアウト</a>
         </li>
         <li class="pc-nav-item">
-          <a href="/signin" class="pc-nav-item-link">サインイン</a>
+          <a href="/entry" class="pc-nav-item-link">サインイン</a>
         </li>
+
       </ul>
     </nav>
-
-    <!-- フッター -->
-    <footer>
-      <p>&copy; 2024 My Blog. All rights reserved.</p>
-    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script

@@ -36,7 +36,7 @@ def entry():
     signup_form = SignupForm()
     login_form = LoginForm()
 
-    # サイアップフォームを送られた時の処理
+    # サインアップフォームを送られた時の処理
     if signup_form.validate_on_submit():
         username = signup_form.username.data
         email = signup_form.email.data
@@ -44,7 +44,7 @@ def entry():
 
         user = User.query.filter_by(username=username).first()
         if user:
-            return redirect(url_for('signup_login'))
+            return redirect(url_for('timeline'))
 
         new_user = User(
             username = username,
