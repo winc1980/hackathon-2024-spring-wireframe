@@ -17,7 +17,18 @@ html {
   }
 
 /* profile プロフィール ここから */
+#header{
+    height: 219px;
+    
+}
+    
+#self-introduction{
 
+}
+    
+#icon-username-wrapper  {
+    
+}  
 
 /* profile プロフィール ここまで */
 
@@ -28,6 +39,36 @@ html {
 
 
 /* signup_login.htmlのcss ここまで */
+
+/* signup_login.htmlのcss ここまで */
+
+/*timeline.htmlのcss　ここから*/
+
+#posts {
+    display: flex;
+}
+
+#home-order-menu{
+
+}
+
+#sort-by-favorites{
+    color: black;
+    background-color: #c4bdbd;
+    height: 35px;
+    width: 114px;
+    box-shadow: 0 4px 0 #7f7d7d; 
+}
+
+#sort-by-favorites:hover{ 
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+#sort-by-created-desc{
+    
+}
+        /*timeline.htmlのcss　ここまで*/
 
 
 

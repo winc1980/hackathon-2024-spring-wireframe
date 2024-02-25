@@ -7,6 +7,7 @@ import pymysql.cursors
 # mysql-connector-python-rf
 
 # MySQLに接続
+# mysql> CREATE DATABASE randaction;
 #mydbは、デプロイ先の環境や手元の環境に合わせて変えること
 mydb = pymysql.connect(
   host="localhost",
