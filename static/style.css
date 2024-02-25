@@ -29,6 +29,24 @@ html {
 
 /* signup_login.htmlのcss ここまで */
 
+/* signup_login.htmlのcss ここまで */
+
+/*timeline.htmlのcss　ここから*/
+
+#posts {
+    display: flex;
+}
+
+#home-order-menu{
+
+}
+
+#sort-by-favorites{
+    
+}
+
+/*timeline.htmlのcss　ここまで*/
+
 
 
 
