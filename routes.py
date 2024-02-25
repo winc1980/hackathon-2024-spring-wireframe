@@ -83,11 +83,11 @@ def profile(username):
     # ログインユーザーのプロフィール
     profile = User.query.filter_by(username=username).first()
     profile = {
-        'user_id':profile.user_id,
+        'user_id':profile.id,
         'username':profile.username,
         'caption': profile.caption,
         'image':profile.image,
-        'randaction':profile.randaction,
+        'randaction_count':profile.randaction_count,
         'follow_count':profile.follow_count,
         'follow_count':profile.follower_count,
     }
@@ -99,7 +99,7 @@ def profile(username):
     # ログインユーザーが「いいね」した投稿
     my_favorite = db.session.query(Post).join(
         Favorite, Favorite.post_id == Post.id
-    ).filter_by(
+    ).filter(
         Favorite.user_id == current_user.id
     ).all()
     my_favorite_posts = [my_favo.to_dict() for my_favo in my_favorite]
