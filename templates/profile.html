@@ -2,7 +2,7 @@
 {% block content %}
 <!-- 自己紹介スペース:
         使用するページ: プロフィールで使用。 -->
-<body>
+
 <div id="self-introduction">
 </div>
   <div id="icon-username-wrapper">
@@ -17,7 +17,7 @@
     <a href="/follow">フォロー</a>
     {% endif %}
     <div id="count">
-      <p>{{ profile.randaction.count }}</p>
+      <p>{{ profile.randaction_count }}</p>
       <p>{{ profile.follow_count }}</p>
       <p>{{ profile.follower_count }}</p>
     </div>
@@ -43,6 +43,8 @@
 </div>
 {% endblock %}
 
+{% block script %}
+
 <script>
   var posts = {{ my_post }};
   var my_favorite_posts = {{ my_favorite_posts }}
@@ -60,7 +62,7 @@
     // posts.sort((a, b) => a.count, - b.count);
     createRandaction(my_favorite_posts);
   })
-
+  ///////////////////////////////////////////////////////////  posts情報はのjsonで渡してください！
   function createRandaction(posts) {
     posts.array.forEach(post => {
   // 投稿コンテナ
@@ -78,7 +80,7 @@
   // 画像
   var randactionImg = document.createElement('img');
   randactionImg.setAttribute('class', 'randaction-img');
-  randactionImg.setAttribute('src', '{{ post.image_data }}');
+  randactionImg.setAttribute('src', '{{ posts[0].image_data }}');
 
   // いいね構成
   var favWrapper = document.createElement('div');
@@ -89,7 +91,7 @@
 
   var favCount = document.createElement('p');
   favCount.setAttribute('class', 'fav-count');
-  favCount.textContent = '{{ post.fav_count }}'
+  favCount.textContent = '{{ posts[0].fav_count }}'
 
   // キャプション
   var captionWrapper = document.createElement('div');
@@ -97,7 +99,7 @@
 
   var caption = document.cre('p');
   caption.setAttribute('class', 'caption');
-  caption.textContent = '{{ post.caption }}';
+  caption.textContent = '{{ posts[0].caption }}';
 
   profileWrapper.appendChild(profileImg);
   profileWrapper.appendChild(username);
@@ -119,5 +121,5 @@
 
 
 </script>
-</body>
+{% endblock %}
 
