@@ -11,6 +11,7 @@ from datetime import datetime
 from . import app, db, login_manager
 from .models import User, Post, Favorite, Mission, Follow
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -83,8 +84,11 @@ class SendPost(FlaskForm):
         submit = SubmitField('投稿')
 
 # timeline
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def timeline():
+    if(not current_user.is_authenticated):
+        return redirect(url_for('entry'))
+    
     send_post = SendPost()
 
     # 新しい順に投稿を取得

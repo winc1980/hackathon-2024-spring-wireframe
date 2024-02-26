@@ -23,12 +23,10 @@
   </div>
 
   <!-- cssの注意点: 複数のポストを囲むものなので、post"s"-wrapperとなっています。複数形に注意してね -->
+  
   <div id="posts-wrapper">
-    <article class="post">
-      <div class="post-img-wrapper">
-        <img src="" alt="" class="post-img" />
-      </div>
-    </article>
+   
+    
   </div>
 </div>
 
@@ -64,50 +62,148 @@
   <input type="submit" value="投稿する" /> -->
 </form>
 <script>
-  var posts = {{ all_posts }};
-  var postsWrapper = document.querySelector("#posts-wrapper")
+  let fav = 0;
+  let button_id = 0;
+  var posts = {{ all_posts | tojson }};
+  var postsWrapper = document.getElementById("posts-wrapper")
   for (let i = 0; i < posts.length; i++) {
+    var post = document.createElement("article");
+    post.setAttribute('class', 'post')
+      var username = document.createElement("div");
+      username.setAttribute('class', 'user-name');
+      post.appendChild(username);
+      
+
+        var user_info_wrapper = document.createElement("div");
+        user_info_wrapper.setAttribute('class', 'user-info-wrapper');
+        username.appendChild(user_info_wrapper);
+
+          var user_info = document.createElement("img");
+          user_info.setAttribute('class', 'user-info');
+          user_info_wrapper.appendChild(user_info);
+
+        var user_name = document.createElement("p");
+        user_name.textContent = posts[i].user_id;
+        username.appendChild(user_name);
+
+      var post_img_wrapper = document.createElement("div");
+      post_img_wrapper.setAttribute('class', 'post-img-wrapper');
+      post.appendChild(post_img_wrapper);
+
+        var post_img = document.createElement("img");
+        post_img.setAttribute('class', 'post-img');
+        post_img.src = 'data:image/png;base64,${posts[i].image_data}';
+        post_img_wrapper.appendChild(post_img);
+        
+      var post_fav = document.createElement("div");
+      post_fav.setAttribute('class', 'post-fav');
+      post.appendChild(post_fav);
+
+        var mission_title = document.createElement("p");
+        mission_title.setAttribute('class', 'mission-title');
+        post_fav.appendChild(mission_title);
+        var favoclick = document.createElement("button");
+        button_id = posts[i].id;
+        favoclick.setAttribute('id', `${button_id}`);
+        post_fav.appendChild(favoclick);
+          var fav_icon = document.createElement("i");
+          fav_icon.setAttribute('class', 'ri-heart-line');
+          favoclick.appendChild(fav_icon);
+        var fav_count = document.createElement("p");
+        fav_count.setAttribute('class', 'fav-count');
+        fav_count.textContent = posts[i].fav_count;
+        post_fav.appendChild(fav_count);
+
+      var post_caption = document.createElement("div");
+      post_caption.setAttribute('class', 'post-caption');
+      post.appendChild(post_caption);
+        var caption = document.createElement("p");
+        caption.textContent = posts[i].caption;
+        post_caption.appendChild(caption);
+      var post_date = document.createElement("div");
+      post_date.setAttribute('class', 'post-date');
+      post.appendChild(post_date);
+        var date = document.createElement("p");
+        date.textContent = posts[i].created_at;
+        post_date.appendChild(date);
+
+    postsWrapper.appendChild(post);
+  }
+  document.getElementById(`${button_id}`).addEventListener("click", function() {
     
+  });
+  
 
   var sortbyFavorites = document.querySelector("#sort-by-favorites");
   sortbyFavorites.addEventListener("click", function() {
     var sortedPosts = posts.sort((a,b) => b.favocount - a.favocount);
-    for(let i= 0; i < sortedPosts.length; i++){
-      var post = document.createElement("div");
-      post.setattribute('class', 'post')
-      var username = document.createElement("div");
-      username.setattribute('class', 'user_name');
-      post.appendChild(username);
-      var user_info_wrapper = document.createElement("img");
-      user_info_wrapper.setattribute('class', 'user_info_wrapper');
-      username.appendChild(user_info_wrapper);
-      var user_name = document.createElement("p");
-      username.appendChild(user_name);
-      var post_img = document.createElement("div");
-      post_img.setattribute('class', 'post_img');
-      post.appendChild(post_img);
-      var event_img = document.createElement("img");
-      post_img.appendChild(event_img);
-      var post_fav = document.createElement("div");
-      post_fav.setattribute('class', 'post_fav');
-      post.appendChild(post_fav);
-      var fav_icon = document.createElement("i");
-      fav_icon.setattribute('class', 'ri-heart-line');
-      post_fav.appendChild(fav_icon);
-      var fav_count = document.createElement("p");
-      post_fav.appendChild(fav_count);
-      var post_caption = document.createElement("div");
-      post_caption.setattribute('class', 'post_caption');
-      post.appendChild(post_caption);
-      var caption = document.createElement("p");
-      post_caption.appendChild(caption);
-
-      postWrapper.appendChild(post);
-    }
+    for (let i = 0; i < sortedPosts.length; i++) {
+      var post = document.createElement("article");
+      post.setAttribute('class', 'post')
+        var username = document.createElement("div");
+        username.setAttribute('class', 'user-name');
+        post.appendChild(username);
+        
+  
+          var user_info_wrapper = document.createElement("div");
+          user_info_wrapper.setAttribute('class', 'user-info-wrapper');
+          username.appendChild(user_info_wrapper);
+  
+            var user_info = document.createElement("img");
+            user_info.setAttribute('class', 'user-info');
+            user_info_wrapper.appendChild(user_info);
+  
+          var user_name = document.createElement("p");
+          user_name.textContent = posts[i].user_id;
+          username.appendChild(user_name);
+  
+        var post_img_wrapper = document.createElement("div");
+        post_img_wrapper.setAttribute('class', 'post-img-wrapper');
+        post.appendChild(post_img_wrapper);
+  
+          var post_img = document.createElement("img");
+          post_img.setAttribute('class', 'post-img');
+          post_img.src = 'data:image/png;base64,${posts[i].image_data}';
+          post_img_wrapper.appendChild(post_img);
+          
+        var post_fav = document.createElement("div");
+        post_fav.setAttribute('class', 'post-fav');
+        post.appendChild(post_fav);
+  
+          var mission_title = document.createElement("p");
+          mission_title.setAttribute('class', 'mission-title');
+          post_fav.appendChild(mission_title);
+          var favoclick = document.createElement("button");
+          favoclick.setAttribute('id', 'fav-click');
+          post_fav.appendChild(favoclick);
+            var fav_icon = document.createElement("i");
+            fav_icon.setAttribute('class', 'ri-heart-line');
+            favoclick.setAttribute('id', `${button_id}`);
+            favoclick.appendChild(fav_icon);
+          var fav_count = document.createElement("p");
+          fav_count.setAttribute('class', 'fav-count');
+          fav_count.textContent = sortedPosts[i].fav_count;
+          post_fav.appendChild(fav_count);
+  
+        var post_caption = document.createElement("div");
+        post_caption.setAttribute('class', 'post-caption');
+        post.appendChild(post_caption);
+          var caption = document.createElement("p");
+          caption.textContent = sortedPosts[i].caption;
+          post_caption.appendChild(caption);
+        var post_date = document.createElement("div");
+        post_date.setAttribute('class', 'post-date');
+        post.appendChild(post_date);
+          var date = document.createElement("p");
+          date.textContent = sortedPosts[i].created_at;
+          post_date.appendChild(date);
+  
+      postsWrapper.appendChild(post);
+    }  
   
 
     // いいね順に並び替える
   });
-}
+
 </script>
 {% endblock %}
