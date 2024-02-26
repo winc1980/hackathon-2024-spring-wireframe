@@ -1,5 +1,6 @@
 import pymysql.cursors
 from dotenv import  dotenv_values
+
 env_vars = dotenv_values(".env")
 
 # MySQLに接続
