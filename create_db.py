@@ -1,11 +1,12 @@
 import pymysql.cursors
+import os
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD') 
 
 # MySQLに接続
 mydb = pymysql.connect(
     host="localhost",
     user="root",
-
-    password="PASSWORD"
+    password=MYSQL_PASSWORD
 
 )
 
@@ -94,3 +95,4 @@ mydb.commit()
 
 # 接続を閉じる
 mydb.close()
+
