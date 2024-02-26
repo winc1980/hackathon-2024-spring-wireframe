@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+import os
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD') 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -14,7 +16,7 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 # 1. randaction という名前のdatabaseを作る(CREATE DATABASEコマンド)
 # 2. create_db.pyを実行する
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:t142337T@localhost/randaction' 
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:{MYSQL_PASSWORD}@localhost/randaction' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
