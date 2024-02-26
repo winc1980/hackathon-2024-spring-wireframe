@@ -1,4 +1,5 @@
 from flask_login import UserMixin
+import base64
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -38,9 +39,9 @@ class Post(db.Model):
     def to_dict(self):
         return {
             'caption' : self.caption,
-            'image_data' : self.image_data,
+            'image_data' : base64.b64encode(self.mission_title).decode('utf-8'),
             'created_at' : self.created_at,
-            'mission_title' : self.mission.title if self.mission else None,
+            'mission_title' : self.mission.title,
             'fav_count':self.fav_count,  #いいね数（db未実装）
         }
 

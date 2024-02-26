@@ -2,7 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 import os
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD') 
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+print("mysql", MYSQL_PASSWORD)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
