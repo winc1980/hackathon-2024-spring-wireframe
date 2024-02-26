@@ -138,6 +138,12 @@
 
   var icon = document.createElement('i');
   icon.setAttribute('class', 'ri-heart-line icon');
+  icon.setAttribute('data-fav-cnt', `${post.id}`);
+  icon.addEventListener('click', function(element) {
+    if (element.target.classList.contain('fav-on')) {
+      
+    }
+  }),
 
   var favCount = document.createElement('p');
   favCount.setAttribute('class', 'fav-count');

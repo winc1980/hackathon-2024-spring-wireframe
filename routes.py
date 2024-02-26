@@ -253,6 +253,7 @@ def edit_profile():
 
 
 
+
 # logout
 @app.route('/logout')
 def logout():
