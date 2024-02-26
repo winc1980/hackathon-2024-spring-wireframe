@@ -19,4 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         signinWrapper.style.display = 'none';
         loginWrapper.style.display = 'block';
     });
+
+
+    
 });

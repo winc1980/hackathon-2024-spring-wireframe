@@ -6,6 +6,7 @@
 * できるだけ、htmlの親要素のcss(レイアウトやコンテンツ幅の指定など)→小要素のcss(文字の大きさや色など)という順番で記述しましょう
 */
 
+/* base.html ここから */
 html {
   font-size: 16px; /*他の場所で1remというサイズ指定をすると16px, 2remは16*2pxとなる*/
   box-sizing: border-box;
@@ -16,13 +17,51 @@ body {
 }
 
 p {
-    margin: 0;
+    padding: 0;
 }
+ul {
+    margin: 0;
+    padding-inline-start: 0px;
+
+}
+li {
+    padding: 0;
+    list-style: none;
+}
+
 
 .selector-for-some-widget {
   /* これは、bootstrapを使用する際に、box-sizingを変更する */
   box-sizing: border-box;
 }
+
+#header, #sp-nav {
+    display: none;
+}
+
+#pc-nav {
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    #header, #sp-nav {
+        display: block;
+    }
+    #sp-nav-list {
+        display: block;
+        display: flex;
+        justify-content: space-around;
+        margin: 0 auto;
+        width: 90%;
+        position: fixed;
+        bottom: 0;
+    }
+    #pc-nav {
+        display: none;
+    }
+}
+
+/* base.htmlここまで */
 
 /* profile プロフィール ここから */
 #header {
