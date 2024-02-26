@@ -6,7 +6,7 @@
 <div id="self-introduction">
 </div>
   <div id="icon-username-wrapper">
-    <img src="{{ profile.image }}" alt="ユーザーアイコン" id="self-introduction-icon" />
+    <img src="data:image/png;base64,{{ profile.image }}" alt="ユーザーアイコン" id="self-introduction-icon" />
     <div id="self-introduction-username">{{ profile.username }}</div>
   </div>
   <div id="mission-edit-wrapper">
@@ -17,13 +17,19 @@
     <a href="/follow">フォロー</a>
     {% endif %}
     <div id="count">
-      <p>{{ profile.randaction_count }}</p>
-      <p>{{ profile.follow_count }}</p>
-      <p>{{ profile.follower_count }}</p>
+      <p>ランダクション{{ profile.randaction_count }}</p>
+      <p>フォロワー : {{ profile.follower_count }}</p>
+      <p>フォロー : {{ profile.follow_count }}</p>
     </div>
   </div>
-  <div>{{ profile.content }}</div>
+  <div>caption{{ profile.caption }}</div>
   
+</div>
+
+<!-- 投稿ソートボタンbutton -->
+<div>
+  <button class="randaction-sort" >randaction</button>
+  <button class="favorite-sort">いいね</button>
 </div>
 
 <!-- プロフィール画面で使用する順番メニュー -->
@@ -46,44 +52,63 @@
 {% block script %}
 
 <script>
+
+  console.log({{profile}});
   var posts = {{ my_post | tojson }};
   var my_favorite_posts = {{ my_favorite_posts | tojson}}
   var postWrapper = document.getElementById('posts-wrapper');
+  var randactionSortButton = document.querySelector('.randaction-sort');
+  var favoriteSortButton = document.querySelector('.favorite-sort');
+
+  // プロフィールユーザーの投稿を表示する処理
+  randactionSortButton.addEventListener('click', function() {
+    postWrapper.innerHTML = '';
+    createRandaction(posts);
+  });
+
+  // プロフィールユーザーがいいねした投稿を表示する機能
+  favoriteSortButton.addEventListener('click', function() {
+    postWrapper.innerHTML = '';
+    createRandaction(my_favorite_posts);
+  });
 
   // 以下・画像表示テスト
-  console.log(posts, 1);
-  posts.forEach(post => {
-    console.log(post);
+//   console.log(posts, 1);
+//   posts.forEach(post => {
+//     console.log(post);
 
-    // "img" という文字列を createElement に渡す必要があります。
-    var testImg = document.createElement('img');
+//     // "img" という文字列を createElement に渡す必要があります。
+//     var testImg = document.createElement('img');
 
-    // post.image_data を Base64 文字列として src 属性に設定する。
-    // この例では、post.image_data が Base64 エンコードされた画像データを含む文字列である必要があります。
-    // "data:image/png;base64," などの正しいデータURL形式を使用していることを確認してください。
-    testImg.src = `data:image/png;base64,${post.image_data}`;
+//     // post.image_data を Base64 文字列として src 属性に設定する。
+//     // この例では、post.image_data が Base64 エンコードされた画像データを含む文字列である必要があります。
+//     // "data:image/png;base64," などの正しいデータURL形式を使用していることを確認してください。
+//     testImg.src = `data:image/png;base64,${post.image_data}`;
 
-    postWrapper.appendChild(testImg);
-});
+//     postWrapper.appendChild(testImg);
+// });
   // 以上・画像表示テスト
 
 
-  createRandaction(posts);
-  var randaction = document.getElementById('sort-by-created-desc');
-  randaction.addEventListener('click', function() {
-    // posts.sort((a, b) => b.count, - a.count);
-    createRandaction(posts);
-  })
+  // createRandaction(posts);
+  // var randaction = document.getElementById('sort-by-created-desc');
+  // randaction.addEventListener('click', function() {
+  //   // posts.sort((a, b) => b.count, - a.count);
+  //   createRandaction(posts);
+  // })
 
-  var sortFavorite = document.getElementById('group-by-mission');
-  sortFavorite.addEventListener('click', function() {
-    // posts.sort((a, b) => a.count, - b.count);
-    createRandaction(my_favorite_posts);
-  })
+  // var sortFavorite = document.getElementById('group-by-mission');
+  // sortFavorite.addEventListener('click', function() {
+  //   // posts.sort((a, b) => a.count, - b.count);
+  //   createRandaction(my_favorite_posts);
+  // })
   ///////////////////////////////////////////////////////////  posts情報はのjsonで渡してください！
+
+  // randactionを投稿する関数
   function createRandaction(posts) {
-    posts.array.forEach(post => {
+    posts.forEach(post => {
   // 投稿コンテナ
+  console.log(post);
   var article = document.createElement('article');
 
   // プロフィール部分
@@ -91,6 +116,7 @@
 
   var profileImg = document.createElement('img');
   profileImg.setAttribute('src', '{{ profile.image }}');
+  // profileImg.src = `data:image/png;base64,${profile.image}`;
 
   var username = document.createElement('p');
   username.textContent = '{{ profile.username }}'
@@ -98,13 +124,17 @@
   // 画像
   var randactionImg = document.createElement('img');
   randactionImg.setAttribute('class', 'randaction-img');
-  randactionImg.src = post.image_data;
+  randactionImg.src = `data:image/png;base64,${post.image_data}`;
   // randactionImg.setAttribute('src', post.image_data);
 
 
-  // いいね構成
+  // いいね + ミッションタイトル構成
   var favWrapper = document.createElement('div');
   favWrapper.setAttribute('class', 'fav-wrapper');
+
+  var missionTitle = document.createElement('p');
+  missionTitle.setAttribute('class', 'mission-title');
+  missionTitle.textContent = post.mission_title;
 
   var icon = document.createElement('i');
   icon.setAttribute('class', 'ri-heart-line icon');
@@ -117,13 +147,19 @@
   var captionWrapper = document.createElement('div');
   captionWrapper.setAttribute('class', 'caption-wrapper');
 
-  var caption = document.cre('p');
+  var caption = document.createElement('p');
   caption.setAttribute('class', 'caption');
   caption.textContent = post.caption;
+
+  // 日付生成
+  var dateTime = document.createElement('p');
+  dateTime.setAttribute('class', 'date-time');
+  dateTime.textContent = post.created_at ;
 
   profileWrapper.appendChild(profileImg);
   profileWrapper.appendChild(username);
 
+  favWrapper.appendChild(missionTitle);
   favWrapper.appendChild(icon);
   favWrapper.appendChild(favCount);
 
@@ -133,9 +169,14 @@
   article.appendChild(randactionImg);
   article.appendChild(favWrapper);
   article.appendChild(captionWrapper);
+  article.appendChild(dateTime);
+
+  postWrapper.appendChild(article);
   });
 };
 
+// サイト遷移時に読み込み
+createRandaction(posts);
 
 
 
