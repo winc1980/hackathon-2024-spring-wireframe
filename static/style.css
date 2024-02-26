@@ -336,9 +336,10 @@ h3.day-mission{
 
 /*timeline.htmlのcss　ここから*/
 
-#posts {
+#posts-wrapper {
   display: flex;
 }
+
 
 #reload-button {
   padding: 0.5rem 1rem;

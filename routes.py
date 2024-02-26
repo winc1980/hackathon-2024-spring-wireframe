@@ -84,8 +84,11 @@ class SendPost(FlaskForm):
         submit = SubmitField('投稿')
 
 # timeline
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def timeline():
+    if(not current_user.is_authenticated):
+        return redirect(url_for('entry'))
+    
     send_post = SendPost()
 
     # 新しい順に投稿を取得
