@@ -304,15 +304,14 @@ h3.signup, h3.login {
 }
 
 #reload-button {
+  padding: 0.5rem 1rem;
+  margin: 1rem;
   align-items: center;
-  width: 372px;
-  height: 47px;
   background-color: #d8d8d8;
-  border-radius: 20%;
+  border-radius: 3rem;
   box-shadow: 11px 11px 22px #c7c7c7, -11px -11px 22px #f8f8f8;
   display: block;
   text-align: center;
-  line-height: 200px;
 }
 
 #reload-button:hover {
@@ -320,27 +319,22 @@ h3.signup, h3.login {
 }
 
 #home-order-menu {
-  background-color: #d8d8d8;
-  width: 114px;
-  height: 35px;
   display: flex;
-  justify-content: center;
+  justify-content:end;
   align-items: center;
+  width: 100%;
 }
 
 #sort-by-favorites {
+  padding: 0.5rem 1rem;
+  margin: 1rem;
   color: black;
-  font-size: 18px;
-  height: 35px;
-  width: 114px;
+  font-size: 1rem;
   background-color: #d8d8d8;
-  border-radius: 20%;
+  border-radius: 3rem;
   box-shadow: 11px 11px 22px #c7c7c7, -11px -11px 22px #f8f8f8;
   display: block;
   text-align: center;
-  line-height: 200px;
-
-  padding-left: 30px;
 }
 
 #sort-by-favorites:hover {
@@ -348,16 +342,15 @@ h3.signup, h3.login {
 }
 
 #sort-by-created-desc {
+  padding: 0.5rem 1rem;
+  margin: 1rem;
   color: black;
-  font-size: 18px;
-  height: 35px;
-  width: 114px;
+  font-size: 1rem;
   background-color: #d8d8d8;
-  border-radius: 20%;
+  border-radius: 3rem;
   box-shadow: 11px 11px 22px #c7c7c7, -11px -11px 22px #f8f8f8;
   display: block;
   text-align: center;
-  line-height: 200px;
 }
 
 #sort-by-created-desc:hover {
