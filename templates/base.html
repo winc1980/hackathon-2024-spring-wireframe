@@ -17,9 +17,16 @@
     <!-- CSS や JavaScript のリンクなどの共通のヘッダー情報 -->
   </head>
   <body>
+    <header>
     <!-- PS, PC共通で、missionを常に上部に固定する -->
-    <div id="mission">ミッションをここに表示</div>
-
+    <div class="mission-back">
+    <div class="back-text">
+    <h3 class="day-mission">today’s Randaction</h3>
+    <div id="mission">Yesしか言えないDay!</div>
+    <div id="mission-mean">日頃断ってしまうお願い事も、全部”Yes!”しか言えない日！</div>
+  </div>
+</div>
+</header>
     <!-- SP用のnav: 画面下と、画面右上。ホーム, ミッション, マイページにも使用-->
     <header id="header">
       {% if current_user.is_authenticated%}

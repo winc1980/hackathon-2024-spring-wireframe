@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS favorites (
 create_missions_table = """
 CREATE TABLE IF NOT EXISTS missions (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(225) NOT NULL DEFAULT 'ミッション',
+    title VARCHAR(225) NOT NULL DEFAULT 'mission',
     count INT NOT NULL DEFAULT 0,
     start_time DATETIME,
     end_time DATETIME
