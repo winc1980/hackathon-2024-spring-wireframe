@@ -116,15 +116,23 @@ def send_post():
 #     return render_template('timeline.html')
 
 
+
 # profile
 @app.route('/profile/<string:username>', methods=['GET'])
 @login_required
 def profile(username):
     # ログインユーザーのプロフィール
+    profile = User.query.filter_by(username=username).first()
     profile = {
-        'username':current_user.username,
-        'content':current_user.content,
+        'user_id':profile.id,
+        'username':profile.username,
+        'caption': profile.caption,
+        'image':profile.image,
+        'randaction_count':profile.randaction_count,
+        'follow_count':profile.follow_count,
+        'follow_count':profile.follower_count,
     }
+    print(profile)
 
     # ログインユーザーの投稿
     posts = Post.query.filter_by(user_id=current_user.id).all()
@@ -133,7 +141,7 @@ def profile(username):
     # ログインユーザーが「いいね」した投稿
     my_favorite = db.session.query(Post).join(
         Favorite, Favorite.post_id == Post.id
-    ).filter_by(
+    ).filter(
         Favorite.user_id == current_user.id
     ).all()
     my_favorite_posts = [my_favo.to_dict() for my_favo in my_favorite]
@@ -189,6 +197,8 @@ def edit_profile():
         return redirect(url_for('profile'))
 
     return render_template('edit_profile.html', profile=profile)
+
+
 
 # logout
 @app.route('/logout')

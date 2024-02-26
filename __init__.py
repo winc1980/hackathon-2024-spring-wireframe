@@ -13,7 +13,8 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 # pip install requirements.txtをしてrequirements.txtにあるライブラリを全てダウンロードする
 # 1. randaction という名前のdatabaseを作る(CREATE DATABASEコマンド)
 # 2. create_db.pyを実行する
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:t142337T@localhost/randaction' 
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:PASSWORD@localhost/randaction' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)

@@ -4,7 +4,9 @@ import pymysql.cursors
 mydb = pymysql.connect(
     host="localhost",
     user="root",
-    password="t142337T"
+
+    password="PASSWORD"
+
 )
 
 # カーソルを取得
@@ -17,7 +19,7 @@ CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL,
     email VARCHAR(255),
-    password_hash VARCHAR(128),
+    password_hash VARCHAR(255),
     image LONGBLOB,
     caption VARCHAR(1000),
     follow_count INT DEFAULT 0,
@@ -75,6 +77,8 @@ CREATE TABLE IF NOT EXISTS follows (
 )
 """
 #テーブル作成
+
+cursor.execute('DROP DATABASE IF EXISTS randaction')
 cursor.execute('CREATE DATABASE IF NOT EXISTS randaction')
 cursor.execute('USE randaction')
 

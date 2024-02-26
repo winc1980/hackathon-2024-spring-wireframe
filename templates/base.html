@@ -22,10 +22,14 @@
 
     <!-- SP用のnav: 画面下と、画面右上。ホーム, ミッション, マイページにも使用-->
     <header id="header">
+      {% if current_user.is_authenticated%}
       <a href="/"><img src="" alt="" id="logo" /></a>
-      <a href="/entry" role="button">ログイン</a>
-      <a href="/entry" role="button">新規登録</a>
+      <p>{{ current_user.username }}がログイン中</p>
+      {% else %}
+      <a href="/entry" role="button">サインイン</a>
+      {% endif %}
       <a href="/logout" role="button">ログアウト</a>
+
     </header>
 
 
@@ -35,14 +39,17 @@
           <a href="/" class="sp-nav-item-link">タイムライン</a>
         </li>
         <li class="sp-nav-item">
-          <a href="/create" class="sp-nav-item-link">投稿作成ボタン</a>
+          <a href="/send_post" class="sp-nav-item-link">投稿作成のボタン</a>
         </li>
         <li class="sp-nav-item">
-          <a href="/profile" class="sp-nav-item-link">プロフィール</a>
+          <a href="/profile/{{ current_user.username }}" class="sp-nav-item-link">プロフィール</a>
         </li>
       </ul>
     </nav>
-    <div role="button"></div>
+
+    <!-- <a href="" class="sp-nav-item-link">投稿作成ボタン</a> -->
+    <!-- <div role="button"></div> -->
+
 
     <!-- PC用のnav: 画面の横幅の3/1の幅で、画面横に固定。ホーム, ミッション, マイページにも使用。-->
     <nav id="pc-nav">
@@ -54,22 +61,34 @@
           <a href="/" class="pc-nav-item-link">ホーム</a>
         </li>
         <li class="pc-nav-item">
-          <a href="/create" class="pc-nav-item-link">投稿を作成</a>
+          <a href="/send_post" class="pc-nav-item-link">投稿を作成</a>
         </li>
         <li class="pc-nav-item">
-          <a href="/profile" class="pc-nav-item-link">プロフィール</a>
+          <a href="/profile/{{ current_user.id }}" class="pc-nav-item-link">プロフィール</a>
         </li>
 
         <!-- 以下の2つはuser情報があったらログアウト、user情報がない場合はentryを返す -->
+        {% if current_user.is_authenticated%}
         <li class="pc-nav-item">
           <a href="/logout" class="pc-nav-item-link">ログアウト</a>
         </li>
+        {% else %}
         <li class="pc-nav-item">
           <a href="/entry" class="pc-nav-item-link">サインイン</a>
         </li>
+        {% endif %}
 
       </ul>
     </nav>
+
+      <!-- コンテンツ部分 -->
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    
+    {% block script %}
+    {% endblock %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
