@@ -241,7 +241,44 @@ form {
 
   
 /*base.htmlのcss　ここから*/
+.mission-back{
+ max-width: 100%;
+ width: 800px;
+ background-image:
+    url(img/mission-back.png);
+    background-position: right;
+    display: inline-block;
+    text-align: right;
 
+.back-text{
+    margin-right: auto; display:block;
+    
+}
+h3.day-mission{
+ font-size: 20px;
+ color: white;
+ 
+}
+
+#mission{
+ font-size: 48px;
+ color: white;
+ font-weight: 300;
+ text-align: center;
+ 
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+}
+
+#mission-mean{
+ text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  color: white;
+}
 /*base.htmlのcss　ここまで*/
 
 
