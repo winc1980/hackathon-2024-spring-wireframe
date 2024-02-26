@@ -338,6 +338,7 @@ h3.day-mission{
 
 #posts-wrapper {
   display: flex;
+  flex-wrap: wrap;
 }
 
 

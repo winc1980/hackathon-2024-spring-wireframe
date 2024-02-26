@@ -84,7 +84,7 @@ class SendPost(FlaskForm):
         submit = SubmitField('投稿')
 
 # timeline
-@app.route('/timeline', methods=['GET'])
+@app.route('/', methods=['GET'])
 def timeline():
     if(not current_user.is_authenticated):
         return redirect(url_for('entry'))
