@@ -18,14 +18,14 @@ def load_user(user_id):
 
 class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
     pass_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
     submit = SubmitField('Sign In')
 
@@ -51,7 +51,7 @@ def entry():
 
         new_user = User(
             username = username,
-            email = email,
+            email = email
         )
 
         new_user.set_password(password)
