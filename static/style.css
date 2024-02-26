@@ -102,23 +102,23 @@ li {
 }
 
 .slide-image1 {
-  background-image: url(img/ログイン.png);
+  background-image: url(img/login.png);
   animation-delay: -2s;
 }
 
 .slide-image2 {
-  background-image: url(img/ログイン１.png);
+  background-image: url(img/login1.png);
   animation-delay: 6s;
 }
 
 .slide-image3 {
-  background-image: url(img/ログイン２.png);
+  background-image: url(img/login2.png);
   animation-delay: 14s;
 }
 
 
 .slide-image4 {
-  background-image: url(img/ログイン３.png);
+  background-image: url(img/login3.png);
   animation-delay: 22s;
 }
 
