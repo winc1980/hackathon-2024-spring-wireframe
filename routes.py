@@ -10,7 +10,7 @@ from datetime import datetime
 
 from . import app, db, login_manager
 from .models import User, Post, Favorite, Mission, Follow
-import datetime
+
 
 @login_manager.user_loader
 def load_user(user_id):

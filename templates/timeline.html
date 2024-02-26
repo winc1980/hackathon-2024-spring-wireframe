@@ -81,7 +81,7 @@
   <input type="submit" value="投稿する" /> -->
 </form>
 <script>
-  var posts = {{ all_posts }};
+  var posts = {{ all_posts | tojson }};
   var postsWrapper = document.querySelector("#posts-wrapper")
   for (let i = 0; i < posts.length; i++) {
     var post = document.createElement("article");
@@ -96,16 +96,20 @@
 
           var user_info = document.createElement("img");
           user_info.setAttribute('class', 'user-info');
+          user_info.setAttribute('src', NULL);
           user_info_wrapper.appendChild(user_info);
 
         var user_name = document.createElement("p");
+        user_name.textContent = posts[i].user_id;
         username.appendChild(user_name);
 
       var post_img_wrapper = document.createElement("div");
       post_img_wrapper.setAttribute('class', 'post-img-wrapper');
       post.appendChild(post_img_wrapper);
+
         var post_img = document.createElement("img");
         post_img.setAttribute('class', 'post-img');
+        post_img.setAttribute('src', posts[i].image_data);
         post_img_wrapper.appendChild(post_img);
         
       var post_fav = document.createElement("div");
@@ -119,17 +123,20 @@
         post_fav.appendChild(fav_icon);
         var fav_count = document.createElement("p");
         fav_count.setAttribute('class', 'fav-count');
+        fav_count.textContent = posts[i].fav_count;
         post_fav.appendChild(fav_count);
 
       var post_caption = document.createElement("div");
       post_caption.setAttribute('class', 'post-caption');
       post.appendChild(post_caption);
         var caption = document.createElement("p");
+        caption.textContent = posts[i].caption;
         post_caption.appendChild(caption);
       var post_date = document.createElement("div");
       post_date.setAttribute('class', 'post-date');
       post.appendChild(post_date);
         var date = document.createElement("p");
+        date.textContent = posts[i].created_at;
         post_date.appendChild(date);
 
     postsWrapper.appendChild(post);
