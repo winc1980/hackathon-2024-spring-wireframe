@@ -82,7 +82,6 @@ class SendPost(FlaskForm):
 # timeline
 @app.route('/', methods=['GET'])
 def timeline():
-        
     # 新しい順に投稿を取得
     posts = Post.query.order_by(desc(Post.created_at)).all()
     all_posts = [post.to_dict() for post in posts]
@@ -163,6 +162,7 @@ def follow():
         followed_id = request.args.get('followed_id'),
     )
 
+    
     db.session.add(new_follow)
     db.session.commit()
 
@@ -174,11 +174,6 @@ class EditForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
     email = StringField('email', validators=[DataRequired()])
     content = StringField('profile', validators=[DataRequired()])
-
-# follow
-@app.route('/follow/<int:user_id>') #user_idはfollowされる人のuser_id
-def follow():
-    
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
