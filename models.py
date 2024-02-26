@@ -39,9 +39,9 @@ class Post(db.Model):
     def to_dict(self):
         return {
             'caption' : self.caption,
-            'image_data' : base64.b64encode(self.mission_title).decode('utf-8'),
+            'image_data' : base64.b64encode(self.image_data).decode('utf-8'),
             'created_at' : self.created_at,
-            'mission_title' : self.mission.title,
+            'mission_title' : self.mission_title,
             'fav_count':self.fav_count,  #いいね数（db未実装）
         }
 
