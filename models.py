@@ -16,6 +16,8 @@ class User(UserMixin, db.Model):
     follower_count = db.Column(db.Integer, nullable=True, default=0) #フォロワーの数
     randaction_count = db.Column(db.Integer, nullable=True, default=0) #投稿の数
 
+    
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 

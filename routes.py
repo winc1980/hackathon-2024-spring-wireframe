@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, login_required, logout_user
 from sqlalchemy import desc
-from wtforms import StringField, PasswordField, SubmitField, IntegerField, HiddenField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, HiddenField, TextAreaField
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, Email ,EqualTo
@@ -94,7 +94,6 @@ def timeline():
     # 新しい順に投稿を取得
     posts = Post.query.order_by(desc(Post.created_at)).all()
     all_posts = [post.to_dict() for post in posts]
-    print(all_posts)
 
     # 現在のミッション情報を取得
     # 日付を特定
@@ -154,16 +153,19 @@ def send_post():
 def profile(username):
     # ログインユーザーのプロフィール
     profile = User.query.filter_by(username=username).first()
-    profile = {
-        'user_id':profile.id,
-        'username':profile.username,
-        'caption': profile.caption,
-        'image':profile.image,
-        'randaction_count':profile.randaction_count,
-        'follow_count':profile.follow_count,
-        'follow_count':profile.follower_count,
-    }
-    print(profile)
+    # print(profile.idd)
+    # profile = {
+    #     'user_id':profile.id,
+    #     'username':profile.username,
+    #     'caption': profile.caption,
+    #     'image':profile.image, #NoneType
+    #     'randaction_count':profile.randaction_count,
+    #     'follow_count':profile.follow_count, #NoneType
+    #     'follower_count':profile.follower_count,
+    # }
+
+    # print(profile)
+
 
     # ログインユーザーの投稿
     posts = Post.query.filter_by(user_id=current_user.id).all()
@@ -208,32 +210,46 @@ def follow():
 
 # edit_profile
 class EditForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired()])
-    content = StringField('profile', validators=[DataRequired()])
+    # username = StringField('username', validators=[DataRequired()])
+    # email = StringField('email', validators=[DataRequired()])
+    # content = StringField('profile', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[Email()])
+    caption = TextAreaField('Caption')  # ユーザーの説明やキャプション
+    image = FileField('Profile Image', validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'Images only!')])
+    submit = SubmitField('編集')
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
-    profile = {
-        'user_id': current_user.id,
-        'email': current_user.email,
-        'content': current_user.content #未実装
-    }
+    # profile = {
+    #     'user_id': current_user.id,
+    #     'email': current_user.email,
+    #     'content': current_user.content #未実装
+    # }
 
     # 更新
     edit_form = EditForm()
     if edit_form.validate_on_submit():
-        user = User.query.filter_by(id=profile.user_id).first()
+        user = User.query.filter_by(id=current_user.id).first()
         user.username = edit_form.username.data
         user.email = edit_form.email.data
-        user.content = edit_form.content.data
+        # user.content = edit_form.content.data
+
+        current_user.username = edit_form.username
+        current_user.email = edit_form.email
+        current_user.image = edit_form.image
+        current_user.caption = edit_form.caption
 
         db.session.commit()
 
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile', username=current_user.username))
 
-    return render_template('edit_profile.html', profile=profile)
+    return render_template(
+        'edit_profile.html',
+        # profile=profile,
+        edit_form=edit_form,
+    )
 
 
 
