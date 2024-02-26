@@ -51,7 +51,7 @@ def entry():
 
         new_user = User(
             username = username,
-            email = email,
+            email = email
         )
 
         new_user.set_password(password)
