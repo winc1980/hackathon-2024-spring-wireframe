@@ -18,14 +18,14 @@ def load_user(user_id):
 
 class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
     pass_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
     submit = SubmitField('Sign In')
 
@@ -84,7 +84,7 @@ class SendPost(FlaskForm):
         submit = SubmitField('投稿')
 
 # timeline
-@app.route('/', methods=['GET'])
+@app.route('/timeline', methods=['GET'])
 def timeline():
     if(not current_user.is_authenticated):
         return redirect(url_for('entry'))
