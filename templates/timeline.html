@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %}Top - Randaction{% endblock %}
-{%block content %}
+{% extends "base.html"%} {% block title %}Top - Randaction{% endblock %}
+{% block content %}
 <!-- 
         * これは、ホーム画面のページです。 
         * id名やclass名の命名は、長くてもわかりやすさを優先しています
@@ -38,4 +38,51 @@
   <input type="submit" value="投稿する" />
 </form>
 
+<script>
+  var posts = {{ all_posts }};
+  var postsWrapper = document.querySelector("#posts-wrapper")
+  for (let i = 0; i < posts.length; i++) {
+    
+
+  var sortbyFavorites = document.querySelector("#sort-by-favorites");
+  var sortbyFavorites.addEventListener("click", function() {
+    var sortedPosts = posts.sort((a,b) => b.favocount - a.favocount);
+    for(let i= 0; i < sortedPosts.length; i++){
+      var post = document.createElement("div");
+      post.setattribute('class', 'post')
+      var username = document.createElement("div");
+      username.setattribute('class', 'user_name');
+      post.appendChild(username);
+      var user_info_wrapper = document.createElement("img");
+      user_info_wrapper.setattribute('class', 'user_info_wrapper');
+      username.appendChild(user_info_wrapper);
+      var user_name = document.createElement("p");
+      username.appendChild(user_name);
+      var post_img = document.createElement("div");
+      post_img.setattribute('class', 'post_img');
+      post.appendChild(post_img);
+      var event_img = document.createElement("img");
+      post_img.appendChild(event_img);
+      var post_fav = document.createElement("div");
+      post_fav.setattribute('class', 'post_fav');
+      post.appendChild(post_fav);
+      var fav_icon = document.createElement("i");
+      fav_icon.setattribute('class', 'ri-heart-line');
+      post_fav.appendChild(fav_icon);
+      var fav_count = document.createElement("p");
+      post_fav.appendChild(fav_count);
+      var post_caption = document.createElement("div");
+      post_caption.setattribute('class', 'post_caption');
+      post.appendChild(post_caption);
+      var caption = document.createElement("p");
+      post_caption.appendChild(caption);
+
+      postWrapper.appendChild(post);
+    }
+  
+
+    // いいね順に並び替える
+  });
+}
+</script>
 {% endblock %}

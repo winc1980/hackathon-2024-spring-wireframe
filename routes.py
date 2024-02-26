@@ -80,7 +80,7 @@ class SendPost(FlaskForm):
         submit = SubmitField('投稿')
         
 # timeline
-@app.route('', methods=['GET'])
+@app.route('/', methods=['GET'])
 def timeline():
         
     # 新しい順に投稿を取得
