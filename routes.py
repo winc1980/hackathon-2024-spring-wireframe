@@ -81,9 +81,11 @@ class SendPost(FlaskForm):
         submit = SubmitField('投稿')
         
 # timeline
-@app.route('/timeline', methods=['GET'])
+@app.route('/', methods=['GET'])
 def timeline():
         
+    if(current_user.is_authenticated == False):
+        return redirect(url_for('entry'))
     # 新しい順に投稿を取得
     posts = Post.query.order_by(desc(Post.created_at)).all()
     all_posts = [post.to_dict() for post in posts]

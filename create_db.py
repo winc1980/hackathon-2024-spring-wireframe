@@ -1,12 +1,16 @@
 import pymysql.cursors
 import os
+from dotenv import dotenv_values
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD') 
 
+env_vars = dotenv_values(".env")
+print(str(env_vars['MYSQL_PASSWORD']))
+print("mysql",MYSQL_PASSWORD)
 # MySQLに接続
 mydb = pymysql.connect(
     host="localhost",
     user="root",
-    password=MYSQL_PASSWORD
+    password=str(env_vars['MYSQL_PASSWORD'])
 
 )
 
