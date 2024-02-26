@@ -1,13 +1,15 @@
 from flask import render_template, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, login_required, logout_user
-from sqlalchemy import desc 
-from wtforms import StringField, PasswordField, SubmitField
+from sqlalchemy import desc
+from wtforms import StringField, PasswordField, SubmitField, HiddenField, FileField
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileAllowed
 from wtforms.validators import DataRequired, Email ,EqualTo
 from werkzeug.security import check_password_hash
 
 from .import app, db, login_manager
 from .models import User, Post, Favorite, Mission, Follow
+import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -72,22 +74,34 @@ def entry():
 
 
 class SendPost(FlaskForm):
+        user_id = HiddenField(default=lambda: current_user.id, validators=[DataRequired()])
         caption = StringField('caption', validators=[DataRequired()])
-        image_data = StringField('image_data')
-        # created_at = StringField('created_at', validators=[DataRequired()])
-        # user_id = StringField('user_id', validators=[DataRequired()])
+        image_data = FileField('image_data',validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'Images only!')])
         mission_title = StringField('mission_title', validators=[DataRequired()])
         submit = SubmitField('投稿')
         
 # timeline
-@app.route('/', methods=['GET'])
+@app.route('/timeline', methods=['GET'])
 def timeline():
         
     # 新しい順に投稿を取得
     posts = Post.query.order_by(desc(Post.created_at)).all()
     all_posts = [post.to_dict() for post in posts]
     send_post = SendPost()
-    return render_template('timeline.html', all_posts=all_posts, send_post=send_post)
+    
+    # 現在のミッション情報を取得
+    # 日付を特定
+    now = datetime.now()
+
+    now_mission_info = Mission.query.filter(Mission.start_time <= now, Mission.end_time >= now).all()
+    now_mission_info = Mission.query.filter_by()
+
+    return render_template(
+        'timeline.html', 
+        all_posts=all_posts, 
+        send_post=send_post,
+        now_mission_info=now_mission_info,
+        )
 # jsonify(all_posts)
 
 
@@ -106,7 +120,11 @@ def send_post():
         )
         db.session.add(new_post)
         db.session.commit()
-        
+    else:
+        # バリデーションに失敗した場合
+        for field, errors in send_post.errors.items():
+            for error in errors:
+                print(f"Error in the {field} field - {error}")
     return redirect(url_for('timeline'))
         # caption = StringField('caption', validators=[DataRequired()])
         # image = StringField('image', validators=[DataRequired()])
