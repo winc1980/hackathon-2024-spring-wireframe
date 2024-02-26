@@ -90,7 +90,6 @@ def timeline():
     # 新しい順に投稿を取得
     posts = Post.query.order_by(desc(Post.created_at)).all()
     all_posts = [post.to_dict() for post in posts]
-    print(all_posts)
 
     # 現在のミッション情報を取得
     # 日付を特定
