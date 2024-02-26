@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from dotenv import  dotenv_values
 env_vars = dotenv_values(".env")
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 

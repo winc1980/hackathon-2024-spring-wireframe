@@ -1,13 +1,14 @@
 from flask import render_template, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, login_required, logout_user
 from sqlalchemy import desc
-from wtforms import StringField, PasswordField, SubmitField, HiddenField, FileField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, HiddenField
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileAllowed
+from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, Email ,EqualTo
 from werkzeug.security import check_password_hash
+from datetime import datetime
 
-from .import app, db, login_manager
+from . import app, db, login_manager
 from .models import User, Post, Favorite, Mission, Follow
 import datetime
 
@@ -77,20 +78,21 @@ class SendPost(FlaskForm):
         user_id = HiddenField(default=lambda: current_user.id, validators=[DataRequired()])
         caption = StringField('caption', validators=[DataRequired()])
         image_data = FileField('image_data',validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'Images only!')])
+        # created_at = StringField('created_at', validators=[DataRequired()])
+        # user_id = StringField('user_id', validators=[DataRequired()])
         mission_title = StringField('mission_title', validators=[DataRequired()])
         submit = SubmitField('投稿')
-        
+
 # timeline
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def timeline():
-        
-    if(current_user.is_authenticated == False):
-        return redirect(url_for('entry'))
+    send_post = SendPost()
+
     # 新しい順に投稿を取得
     posts = Post.query.order_by(desc(Post.created_at)).all()
     all_posts = [post.to_dict() for post in posts]
-    send_post = SendPost()
-    
+    print(all_posts)
+
     # 現在のミッション情報を取得
     # 日付を特定
     now = datetime.now()
@@ -98,12 +100,13 @@ def timeline():
     now_mission_info = Mission.query.filter(Mission.start_time <= now, Mission.end_time >= now).all()
     now_mission_info = Mission.query.filter_by()
 
+
     return render_template(
-        'timeline.html', 
-        all_posts=all_posts, 
-        send_post=send_post,
-        now_mission_info=now_mission_info,
-        )
+        'timeline.html',
+        all_posts = all_posts,
+        send_post = send_post,
+        now_mission_info = now_mission_info,
+    )
 # jsonify(all_posts)
 
 
@@ -111,11 +114,16 @@ def timeline():
 @app.route('/send_post', methods=['POST'])
 def send_post():
     send_post = SendPost()
-    
+    # print(send_post.mission_title)
     if send_post.validate_on_submit():
+        
+        file = send_post.image_data.data
+        print(file)
+        image_file = file.read()
+
         new_post = Post(
             caption = send_post.caption.data,
-            image_data = send_post.image_data.data,
+            image_data = image_file,
             user_id = current_user.id,
             mission_title = send_post.mission_title.data,
             
@@ -183,6 +191,12 @@ def follow():
         followed_id = request.args.get('followed_id'),
     )
 
+    # フォローした人のフォロー数を変更
+    user = User.query.get(current_user.id)
+    
+
+    # フォローされた人のフォロワー数を変更
+    
     db.session.add(new_follow)
     db.session.commit()
 

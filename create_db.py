@@ -1,7 +1,5 @@
 import pymysql.cursors
-import os
-from dotenv import dotenv_values
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD') 
+from dotenv import  dotenv_values
 
 env_vars = dotenv_values(".env")
 print(str(env_vars['MYSQL_PASSWORD']))
