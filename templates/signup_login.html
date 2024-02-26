@@ -2,7 +2,8 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
     <title>Randactionを始める</title>
     <link
       rel="stylesheet"
@@ -16,27 +17,55 @@
     -->
 
     <!-- signup_form -->
-    <h2>登録</h2>
+
+    <div class="slide">
+      <div class="slide-image1"></div>
+      <div class="slide-image2"></div>
+      <div class="slide-image3"></div>
+      <div class="slide-image4"></div>
+      <h3 class="signup">Sign up</h3>
+    <h2 class="randaction">Randaction</h2>
+
+
     <form method="POST" class="container" id="signup">
+     
       <!-- CSRF対策(トークンが生成される) -->
       {{ signup_form.hidden_tag() }}
+      
       <div class="row">{{ signup_form.username.label }} {{ signup_form.username() }}</div>
       <div class="row">{{ signup_form.email.label }} {{ signup_form.email() }}</div>
       <div class="row">{{ signup_form.password.label }} {{ signup_form.password() }}</div>
       <div class="row">
         {{ signup_form.pass_confirm.label }} {{ signup_form.pass_confirm() }}
       </div>
+      <div style="text-align: center;">
+      <div class="moreLink">
+        
+      <p class="login"><a href="#">Login Page</a></p>
+      <div class="lineArrow"></div>
+      </div>
+    </div>
+    <div class="signup-button">
       {{ signup_form.submit() }}
     </form>
-
+  </div>
+  </div>
     <!-- login_form -->
-    <h2>ログイン</h2>
+    <div class="slide">
+      <div class="slide-image1"></div>
+      <div class="slide-image2"></div>
+      <div class="slide-image3"></div>
+      <div class="slide-image4"></div>
+    <h2 class="Login">Login</h2>
     <form method="POST" class="container" id="login">
       <!-- CSRF対策(トークンが生成される) -->
       {{ login_form.hidden_tag() }}
       <div class="row">{{ login_form.username.label }} {{ login_form.username() }}</div>
       <div class="row">{{ login_form.password.label }} {{ login_form.password() }}</div>
+      <div class="signin-button">
       {{ login_form.submit() }}
     </form>
+  </div>
+    </div>
   </body>
 </html>
