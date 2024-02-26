@@ -6,244 +6,245 @@
 * できるだけ、htmlの親要素のcss(レイアウトやコンテンツ幅の指定など)→小要素のcss(文字の大きさや色など)という順番で記述しましょう
 */
 
-
-
 html {
-    font-size: 16px; /*他の場所で1remというサイズ指定をすると16px, 2remは16*2pxとなる*/
-    box-sizing: border-box;
+  font-size: 16px; /*他の場所で1remというサイズ指定をすると16px, 2remは16*2pxとなる*/
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+    margin: 0;
 }
 
 .selector-for-some-widget {
-    /* これは、bootstrapを使用する際に、box-sizingを変更する */
-    box-sizing: border-box;
-  }
+  /* これは、bootstrapを使用する際に、box-sizingを変更する */
+  box-sizing: border-box;
+}
 
 /* profile プロフィール ここから */
-#header{
-    height: 219px;
-    
+#header {
+  height: 219px;
 }
-    
-#self-introduction{
 
+#self-introduction {
 }
-    
-#icon-username-wrapper  {
-    
-}  
+
+#icon-username-wrapper {
+}
 
 /* profile プロフィール ここまで */
 
-
 /* signup_login.htmlのcss ここから */
 .slide {
-    position: relative;
-    width: 100%;
-    height: 783px;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.slide-image1, .slide-image2, .slide-image3 , .slide-image4 {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.slide-image1,
+.slide-image2,
+.slide-image3,
+.slide-image4 {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  animation: slider-1 24s linear infinite;
+  z-index: -1;
+}
+
+.slide-image1 {
+  background-image: url(img/ログイン.png);
+  animation-delay: -2s;
+}
+
+.slide-image2 {
+  background-image: url(img/ログイン１.png);
+  animation-delay: 6s;
+}
+
+.slide-image3 {
+  background-image: url(img/ログイン２.png);
+  animation-delay: 14s;
+}
+
+
+.slide-image4 {
+  background-image: url(img/ログイン３.png);
+  animation-delay: 22s;
+}
+
+#to-login-button, #to-signin-button {
+    display: inline;
+    background-color: transparent;
+    border: 0;
+    font-size: 1rem;
+    color: #ffffff;
+}
+p.login {
+    text-align: center;
+}
+
+@keyframes slider-1 {
+  0% {
     opacity: 0;
-    animation: slider-1 24s linear infinite;
-    z-index: -1;
+    transform: scale(1);
+  }
+  4.16% {
+    opacity: 1;
+  }
+  33.33% {
+    opacity: 1;
+  }
+  41.66% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-  
-  .slide-image1{
-    background-image:
-    url(img/ログイン.png);
-    animation-delay: -2s;
-  }
-
-  .slide-image2 {
-    background-image:
-    url(img/ログイン１.png);
-    animation-delay: 6s;
-  }
-
-  .slide-image3 {
-    background-image:
-    url(img/ログイン２.png);
-    animation-delay: 14s;
-  }
-
-  .slide-image4{
-    background-image:
-    url(img/ログイン３.png);
-    animation-delay: 22s;
-  
-  }
-
-  @keyframes slider-1 {
-    0% {
-      opacity: 0;
-      transform: scale(1);
-    }
-    4.16% {
-      opacity: 1;
-    }
-    33.33% {
-      opacity: 1;
-    }
-    41.66% {
-      opacity: 0;
-      transform: scale(1.2);
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  
-h2.randaction{
-font-size: 140px;
-color: white;
-margin: 0 auto;
-text-align: center;
+h2.randaction {
+  font-size: 5rem;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
 }
 
-h3.signup{
-    font-size: 48px;
+h3.signup, h3.login {
+  font-size: 2rem;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 300;
+}
+
+.row {
+  font-size: 28px;
+  font-weight: 250;
+  color: white;
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  width: 60%;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+.row input {
+  color: rgb(244, 244, 244);
+  width: 40%;
+  height: 40px;
+  opacity: 0.5;
+  border-style: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10 0 #000;
+}
+
+.login p {
+  text-align: center;
+}
+
+.login a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.lineArrow {
+  width: 20%;
+  height: 10px;
+  margin-left: 40%;
+  border-bottom: solid #ffffff;
+  border-right: solid #ffffff;
+  /*傾きを調節*/
+  transform: skew(45deg);
+  /*下線矢印をテキストに合わせてうまい具合にはめる*/
+
+  text-align: center;
+}
+.signup-button {
+  text-align: center;
+}
+#submit {
+  background-color: #f17836; /* ボタンの背景色 */
+  border: none; /* ボタンのボーダーをなくす */
+  color: white; /* ボタンのテキスト色 */
+  padding: 15px 32px; /* ボタンのパディング */
+  text-align: center; /* ボタンのテキストを中央揃え */
+  text-decoration: none; /* テキストの装飾をなくす */
+  display: inline-block; /* ボタンをブロック要素として表示 */
+  font-size: 20px; /* ボタンのテキストのフォントサイズ */
+  margin: 4px 2px; /* ボタンのマージン */
+  cursor: pointer; /* カーソルをポインターに変更 */
+  border-radius: 10px; /* ボタンの角を丸くする */
+  padding-top: 20px;
+}
+
+.signin-button {
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  /* スマートフォン用CSS記述 */
+  h2.randaction {
+    font-size: 50px;
     color: white;
     margin: 0 auto;
     text-align: center;
-    margin-top: 20px;
+  }
+
+  h3 {
+    font-size: 24px;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
     font-weight: 300;
-}
-form {
-    margin-top: 20px;
-}
-.row{
-    font-size: 28px;
+  }
+
+  form {
+    padding-top: 20px;
+  }
+  form .row {
+    font-size: 20px;
     font-weight: 250;
     color: white;
     text-align: center;
     display: flex;
-    margin:0 auto;
-    justify-content: space-between;
+    flex-direction: column;
+    margin: 0 auto;
     width: 60%;
     padding-bottom: 1rem;
     margin-top: 20px;
-}
-.row input{
-    color: rgb(244, 244, 244);
-    width: 40%;
-    height: 40px;
-    opacity: 0.5;
-    border-style: none;
-    border-radius: 20px;
-    
-}
+  }
+  form .row label {
+    text-align: start;
+  }
+  form .row input {
+    width: 100%;
+  }
 
-.login p{
-    text-align: center;
-}
-
-.login a{
-    text-decoration: none;
+  h3.login {
+    font-size: 50px;
     color: white;
-    font-size: 20px;
-   text-align: center;
-}
-  
-  .lineArrow {
-    width: 20%;
-    height: 10px;
-    margin-left: 40%;
-    border-bottom: solid #ffffff;
-    border-right: solid #ffffff;
-     /*傾きを調節*/
-    transform: skew(45deg);
-    /*下線矢印をテキストに合わせてうまい具合にはめる*/
-   
     text-align: center;
   }
-.signup-button{
-    text-align: center;
-}
-  #submit {
-    background-color: #f17836; /* ボタンの背景色 */
-    border: none; /* ボタンのボーダーをなくす */
-    color: white; /* ボタンのテキスト色 */
-    padding: 15px 32px; /* ボタンのパディング */
-    text-align: center; /* ボタンのテキストを中央揃え */
-    text-decoration: none; /* テキストの装飾をなくす */
-    display: inline-block; /* ボタンをブロック要素として表示 */
-    font-size: 20px; /* ボタンのテキストのフォントサイズ */
-    margin: 4px 2px; /* ボタンのマージン */
-    cursor: pointer; /* カーソルをポインターに変更 */
-    border-radius: 10px; /* ボタンの角を丸くする */
-    margin-top: 20px;
-  }
-  
-  h2.Login{
-    font-size: 140px;
-    color: white;
-    margin: 10% 0 0 0;
-    text-align: center;
-  }
-  .signin-button{
-    text-align: center;
-}
-  @media screen and (max-width:768px) {
-
-	/* スマートフォン用CSS記述 */
-    h2.randaction{
-        font-size: 50px;
-        color: white;
-        margin: 0 auto;
-        text-align: center;
-        }
-    
-        h3.signup{
-            font-size: 24px;
-            color: white;
-            margin: 0 auto;
-            text-align: center;
-            margin-top: 20px;
-            font-weight: 300;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-        .row{
-            font-size: 20px;
-            font-weight: 250;
-            color: white;
-            text-align: center;
-            display: flex;
-            margin:0 auto;
-            justify-content: space-between;
-            width: 60%;
-            padding-bottom: 1rem;
-            margin-top: 20px;
-        }
-
-        h2.Login{
-            font-size: 50px;
-            color: white;
-            text-align: center;
-          }
 }
 
-
-    
-    
-
-  
 /*base.htmlのcss　ここから*/
 
 /*base.htmlのcss　ここまで*/
-
 
 /* signup_login.htmlのcss ここまで */
 
@@ -252,94 +253,78 @@ form {
 /*timeline.htmlのcss　ここから*/
 
 #posts {
-    display: flex;
+  display: flex;
 }
 
-#reload-button{
-    align-items: center;
-    width: 372px;
-    height: 47px;
-    background-color:#d8d8d8;
-  border-radius:20%;
-  box-shadow:11px 11px 22px #c7c7c7,
-             -11px -11px 22px #f8f8f8;
-  display:block;
-  text-align:center;
-  line-height:200px;
-
+#reload-button {
+  align-items: center;
+  width: 372px;
+  height: 47px;
+  background-color: #d8d8d8;
+  border-radius: 20%;
+  box-shadow: 11px 11px 22px #c7c7c7, -11px -11px 22px #f8f8f8;
+  display: block;
+  text-align: center;
+  line-height: 200px;
 }
 
-#reload-button:hover{
-    box-shadow:inset 7px 7px 14px #c7c7c7,
-                      inset -7px -7px 14px #f8f8f8;
-         
-   }
-
-#home-order-menu{
-    background-color:#d8d8d8;
-    width:114px;
-    height:35px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+#reload-button:hover {
+  box-shadow: inset 7px 7px 14px #c7c7c7, inset -7px -7px 14px #f8f8f8;
 }
 
-#sort-by-favorites{
-    color: black;
-    font-size: 18px;
-    height: 35px;
-    width: 114px;
-    background-color:#d8d8d8;
-  border-radius:20%;
-  box-shadow:11px 11px 22px #c7c7c7,
-             -11px -11px 22px #f8f8f8;
-  display:block;
-  text-align:center;
-  line-height:200px;
-
-  padding-left:30px ;
+#home-order-menu {
+  background-color: #d8d8d8;
+  width: 114px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#sort-by-favorites:hover{
- box-shadow:inset 7px 7px 14px #c7c7c7,
-                   inset -7px -7px 14px #f8f8f8;
-      
+#sort-by-favorites {
+  color: black;
+  font-size: 18px;
+  height: 35px;
+  width: 114px;
+  background-color: #d8d8d8;
+  border-radius: 20%;
+  box-shadow: 11px 11px 22px #c7c7c7, -11px -11px 22px #f8f8f8;
+  display: block;
+  text-align: center;
+  line-height: 200px;
+
+  padding-left: 30px;
 }
 
-
-
-#sort-by-created-desc{
-    color: black;
-    font-size: 18px;
-    height: 35px;
-    width: 114px;
-    background-color:#d8d8d8;
-  border-radius:20%;
-  box-shadow:11px 11px 22px #c7c7c7,
-             -11px -11px 22px #f8f8f8;
-  display:block;
-  text-align:center;
-  line-height:200px;
+#sort-by-favorites:hover {
+  box-shadow: inset 7px 7px 14px #c7c7c7, inset -7px -7px 14px #f8f8f8;
 }
 
-#sort-by-created-desc:hover{
-    box-shadow:inset 7px 7px 14px #c7c7c7,
-                   inset -7px -7px 14px #f8f8f8;
+#sort-by-created-desc {
+  color: black;
+  font-size: 18px;
+  height: 35px;
+  width: 114px;
+  background-color: #d8d8d8;
+  border-radius: 20%;
+  box-shadow: 11px 11px 22px #c7c7c7, -11px -11px 22px #f8f8f8;
+  display: block;
+  text-align: center;
+  line-height: 200px;
 }
 
-
+#sort-by-created-desc:hover {
+  box-shadow: inset 7px 7px 14px #c7c7c7, inset -7px -7px 14px #f8f8f8;
+}
 
 /*timeline.htmlのcss　ここまで*/
 
-
-
-
 /* SP版のCSSはここから書いてね */
 @media screen and (max-width: 576px) {
-    /* signup_login.htmlのcssここから */
-    #signup {
-        width: 100%;
-        padding: 1rem;
-    }
-    /* signup_login.htmlのcssここまで */
+  /* signup_login.htmlのcssここから */
+  #signup {
+    width: 100%;
+    padding: 1rem;
+  }
+  /* signup_login.htmlのcssここまで */
 }
