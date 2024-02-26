@@ -21,7 +21,7 @@
 
     <!-- signup_form -->
 
-    <div class="slide" id="signup-wrapper">
+    <div class="slide" id="signin-wrapper">
       <div class="slide-image1"></div>
       <div class="slide-image2"></div>
       <div class="slide-image3"></div>
@@ -46,7 +46,7 @@
           {{ signup_form.pass_confirm.label }} {{ signup_form.pass_confirm() }}
         </div>
         <p class="login">
-          <span id="to-login-button" role="button">Login Page</span>
+          <a id="to-login-button" role="button" tabindex="0" type="button">Login Page</a>
         </p>
           <div class="lineArrow"></div>
         <div class="signup-button">{{ signup_form.submit() }}</div>
@@ -70,7 +70,7 @@
           {{ login_form.password.label }} {{ login_form.password() }}
         </div>
         <p class="login">
-          <span id="to-signin-button" role="button">Signin Page</span>
+          <a id="to-signin-button" role="button" tabindex="0" type="button">Signin Page</a>
         </p>
           <div class="lineArrow"></div>
         <div class="signin-button">{{ login_form.submit() }}</div>
@@ -98,6 +98,6 @@
   ></script>
   <script
     type="text/javascript"
-    src="/static/main.js"
+    src="{{ url_for('static', filename='main.js') }}"
   ></script>
 </html>

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var toLoginButton = document.getElementById('to-login-button');
     var loginWrapper = document.getElementById('login-wrapper');
     var signinWrapper = document.getElementById('signin-wrapper');
+    console.log(signinWrapper)
 
     loginWrapper.style.display = 'none';
     signinWrapper.style.display = 'block';
