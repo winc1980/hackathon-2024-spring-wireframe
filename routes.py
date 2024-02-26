@@ -162,6 +162,11 @@ def follow():
         followed_id = request.args.get('followed_id'),
     )
 
+    # フォローした人のフォロー数を変更
+    user = User.query.get(current_user.id)
+    
+
+    # フォローされた人のフォロワー数を変更
     
     db.session.add(new_follow)
     db.session.commit()
