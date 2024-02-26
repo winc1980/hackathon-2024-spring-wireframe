@@ -46,8 +46,8 @@
 {% block script %}
 
 <script>
-  var posts = {{ my_post }};
-  var my_favorite_posts = {{ my_favorite_posts }}
+  var posts = {{ my_post | tojson }};
+  var my_favorite_posts = {{ my_favorite_posts | tojson}}
   var postWrapper = document.getElementById('posts-wrapper');
 
 

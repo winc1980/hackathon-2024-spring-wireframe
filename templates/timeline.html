@@ -16,7 +16,7 @@
   <!-- ホーム画面で使用する順番メニュー -->
   <div id="home-order-menu">
     <div id="reload-button">
-      <img src="Rectangle 92.png" alt="">
+      <img src="/static/img/reload.png" alt="" width="24px" height="24px">
     </div>
     <div id="sort-by-favorites">いいね順</div>
     <div id="sort-by-created-desc">新しい順</div>
@@ -33,14 +33,36 @@
 </div>
 
 <!-- 投稿作成 -->
-<form action="" method="POST" id="create_post">
-  <label for="caption">キャプション</label>
+<form action="{{ url_for('send_post') }}" method="POST" id="create_post" enctype="multipart/form-data">
+  {{ send_post.hidden_tag() }}
+  <div class="form-group">
+    {{ send_post.user_id.label(class="form-control-label") }}
+    {{ send_post.user_id(id="user_id") }}
+  </div>
+
+  <div class="form-group">
+    {{ send_post.caption.label(class="form-control-label") }}
+    {{ send_post.caption(class="form-control") }}
+</div>
+  <div class="form-group">
+    {{ send_post.image_data.label(class="form-control-label") }}
+    {{ send_post.image_data(class="form-control")}}
+  </div>
+
+  <div>
+    {{ send_post.mission_title.label(class="form-control-label") }}
+    {{ send_post.mission_title(class="form-control")}}
+  </div>
+  <div class="form-group">
+    {{ send_post.submit(class="btn") }}
+  </div>
+  
+  <!-- <label for="caption">キャプション</label>
   <input type="text" name="caption" id="caption" />
   <label for="image-data">画像</label>
   <input type="file" accept="image/*" id="image-data" />
-  <input type="submit" value="投稿する" />
+  <input type="submit" value="投稿する" /> -->
 </form>
-
 <script>
   var posts = {{ all_posts }};
   var postsWrapper = document.querySelector("#posts-wrapper")
@@ -48,7 +70,7 @@
     
 
   var sortbyFavorites = document.querySelector("#sort-by-favorites");
-  var sortbyFavorites.addEventListener("click", function() {
+  sortbyFavorites.addEventListener("click", function() {
     var sortedPosts = posts.sort((a,b) => b.favocount - a.favocount);
     for(let i= 0; i < sortedPosts.length; i++){
       var post = document.createElement("div");

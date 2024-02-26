@@ -1,11 +1,13 @@
 import pymysql.cursors
+from dotenv import  dotenv_values
+
+env_vars = dotenv_values(".env")
 
 # MySQLに接続
 mydb = pymysql.connect(
     host="localhost",
     user="root",
-
-    password="password"
+    password=str(env_vars["MYSQL_PASSWORD"])
 
 )
 
@@ -94,3 +96,4 @@ mydb.commit()
 
 # 接続を閉じる
 mydb.close()
+

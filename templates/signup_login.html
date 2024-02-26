@@ -2,8 +2,11 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,user-scalable=no"
+    />
     <title>Randactionを始める</title>
     <link
       rel="stylesheet"
@@ -18,54 +21,83 @@
 
     <!-- signup_form -->
 
-    <div class="slide">
+    <div class="slide" id="signin-wrapper">
       <div class="slide-image1"></div>
       <div class="slide-image2"></div>
       <div class="slide-image3"></div>
       <div class="slide-image4"></div>
+      <h2 class="randaction">Randaction</h2>
       <h3 class="signup">Sign up</h3>
-    <h2 class="randaction">Randaction</h2>
 
+      <form method="POST" class="" id="signup">
+        <!-- CSRF対策(トークンが生成される) -->
+        {{ signup_form.hidden_tag() }}
 
-    <form method="POST" class="container" id="signup">
-     
-      <!-- CSRF対策(トークンが生成される) -->
-      {{ signup_form.hidden_tag() }}
-      
-      <div class="row">{{ signup_form.username.label }} {{ signup_form.username() }}</div>
-      <div class="row">{{ signup_form.email.label }} {{ signup_form.email() }}</div>
-      <div class="row">{{ signup_form.password.label }} {{ signup_form.password() }}</div>
-      <div class="row">
-        {{ signup_form.pass_confirm.label }} {{ signup_form.pass_confirm() }}
-      </div>
-      <div style="text-align: center;">
-      <div class="moreLink">
-        
-      <p class="login"><a href="#">Login Page</a></p>
-      <div class="lineArrow"></div>
-      </div>
+        <div class="row">
+          {{ signup_form.username.label }} {{ signup_form.username() }}
+        </div>
+        <div class="row">
+          {{ signup_form.email.label }} {{ signup_form.email() }}
+        </div>
+        <div class="row">
+          {{ signup_form.password.label }} {{ signup_form.password() }}
+        </div>
+        <div class="row">
+          {{ signup_form.pass_confirm.label }} {{ signup_form.pass_confirm() }}
+        </div>
+        <p class="login">
+          <a id="to-login-button" role="button" tabindex="0" type="button">Login Page</a>
+        </p>
+          <div class="lineArrow"></div>
+        <div class="signup-button">{{ signup_form.submit() }}</div>
+      </form>
     </div>
-    <div class="signup-button">
-      {{ signup_form.submit() }}
-    </form>
-  </div>
-  </div>
     <!-- login_form -->
-    <div class="slide">
+    <div class="slide" id="login-wrapper">
       <div class="slide-image1"></div>
       <div class="slide-image2"></div>
       <div class="slide-image3"></div>
       <div class="slide-image4"></div>
-    <h2 class="Login">Login</h2>
-    <form method="POST" class="container" id="login">
-      <!-- CSRF対策(トークンが生成される) -->
-      {{ login_form.hidden_tag() }}
-      <div class="row">{{ login_form.username.label }} {{ login_form.username() }}</div>
-      <div class="row">{{ login_form.password.label }} {{ login_form.password() }}</div>
-      <div class="signin-button">
-      {{ login_form.submit() }}
-    </form>
-  </div>
+      <h2 class="randaction">Randaction</h2>
+      <h3 class="login">Login</h3>
+      <form method="POST" class="" id="login">
+        <!-- CSRF対策(トークンが生成される) -->
+        {{ login_form.hidden_tag() }}
+        <div class="row">
+          {{ login_form.username.label }} {{ login_form.username() }}
+        </div>
+        <div class="row">
+          {{ login_form.password.label }} {{ login_form.password() }}
+        </div>
+        <p class="login">
+          <a id="to-signin-button" role="button" tabindex="0" type="button">Signin Page</a>
+        </p>
+          <div class="lineArrow"></div>
+        <div class="signin-button">{{ login_form.submit() }}</div>
+      </form>
     </div>
   </body>
+  <script>
+
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='main.js') }}"
+  ></script>
 </html>
