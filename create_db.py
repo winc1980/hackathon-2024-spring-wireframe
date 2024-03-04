@@ -3,7 +3,6 @@ from dotenv import  dotenv_values
 
 env_vars = dotenv_values(".env")
 print(str(env_vars['MYSQL_PASSWORD']))
-print("mysql",MYSQL_PASSWORD)
 # MySQLに接続
 mydb = pymysql.connect(
     host="localhost",

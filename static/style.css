@@ -6,6 +6,7 @@
 * できるだけ、htmlの親要素のcss(レイアウトやコンテンツ幅の指定など)→小要素のcss(文字の大きさや色など)という順番で記述しましょう
 */
 
+
 /* base.html ここから */
 html {
   font-size: 16px; /*他の場所で1remというサイズ指定をすると16px, 2remは16*2pxとなる*/
@@ -40,12 +41,32 @@ li {
 }
 
 #pc-nav {
+  width: 18%;
+  position: relative;
+
+}
+
+#pc-nav ul{
     display: block;
+    top: 0;
+    left: 0;
+}
+
+#content {
+  width: 80%;
+}
+#container-big {
+  display: flex;
 }
 
 @media screen and (max-width: 768px) {
     #header, #sp-nav {
         display: block;
+    }
+    #sp-nav-list {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 5rem;
     }
     #sp-nav-list {
         display: block;
@@ -55,6 +76,9 @@ li {
         width: 90%;
         position: fixed;
         bottom: 0;
+    }
+    .sp-nav-item a img{
+      width: 30px;
     }
     #pc-nav {
         display: none;
@@ -291,16 +315,16 @@ h3.signup, h3.login {
 
 /*base.htmlのcss　ここから*/
 .mission-back{
- max-width: 100%;
- width: 800px;
- background-image:
-    url(img/mission-back.png);
-    background-position: right;
-    display: inline-block;
-    text-align: right;
+ width: 100%;
+ background-image: url(img/mission-back.png);
+background-position: right;
+display: inline-block;
+text-align: center;
 }
 .back-text{
-    margin-right: auto; display:block;
+    margin-right: auto;
+    display:block;
+    text-shadow: 0 0 10px #00000051;
     
 }
 h3.day-mission{
@@ -310,12 +334,11 @@ h3.day-mission{
 }
 
 #mission{
- font-size: 48px;
- color: white;
- font-weight: 300;
- text-align: center;
- 
-  transform: translateY(-50%);
+  font-size: 48px;
+  color: white;
+  font-weight: 400;
+  text-align: center;
+  /* transform: translateY(-50%); */
   width: 100%;
   text-align: center;
 }
@@ -328,6 +351,27 @@ h3.day-mission{
   text-align: center;
   color: white;
 }
+
+#create_post {
+  width: 100%;
+}
+
+#pc-nav ul{
+}
+#pc-nav li {
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  align-items: center;
+  background-color: #d8d8d8;
+  border-radius: 3rem;
+  box-shadow: 11px 11px 22px #c7c7c7, -11px -11px 22px #f8f8f8;
+  display: block;
+  text-align: center;
+}
+#pc-nav li:hover {
+    box-shadow: inset 7px 7px 14px #c7c7c7, inset -7px -7px 14px #f8f8f8;
+}
+
 /*base.htmlのcss　ここまで*/
 
 /* signup_login.htmlのcss ここまで */
@@ -338,6 +382,13 @@ h3.day-mission{
 
 #posts-wrapper {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.post-img-wrapper img{
+  min-width: 200px;
+  max-width: 400px;
 }
 
 

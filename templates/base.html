@@ -43,13 +43,13 @@
     <nav id="sp-nav">
       <ul id="sp-nav-list">
         <li class="sp-nav-item">
-          <a href="/" class="sp-nav-item-link">タイムライン</a>
+          <a href="/" class="sp-nav-item-link"><img src="/static/img/home.png" alt=""></a>
         </li>
         <li class="sp-nav-item">
-          <a href="/send_post" class="sp-nav-item-link">投稿作成のボタン</a>
+          <a href="#create_post" class="sp-nav-item-link"><img src="/static/img/plus.png" alt=""></a>
         </li>
         <li class="sp-nav-item">
-          <a href="/profile/{{ current_user.username }}" class="sp-nav-item-link">プロフィール</a>
+          <a href="/profile/{{ current_user.username }}" class="sp-nav-item-link"><img src="/static/img/profile-user.png" alt=""></a>
         </li>
       </ul>
     </nav>
@@ -59,29 +59,30 @@
 
 
     <!-- PC用のnav: 画面の横幅の3/1の幅で、画面横に固定。ホーム, ミッション, マイページにも使用。-->
+    <div id="container-big">
     <nav id="pc-nav">
       <ul id="pc-nav-list">
         <li class="pc-nav-item">
-          <a href="/" class="pc-nav-item-link">ロゴ</a>
+          <a  style="color: black;" href="/" class="pc-nav-item-link">Randaction</a>
         </li>
         <li class="pc-nav-item">
-          <a href="/" class="pc-nav-item-link">ホーム</a>
+          <a style="color: black;" href="/" class="pc-nav-item-link"><img src="/static/img/home.png" alt="" width="18px"> ホーム</a>
         </li>
         <li class="pc-nav-item">
-          <a href="/send_post" class="pc-nav-item-link">投稿を作成</a>
+          <a  style="color: black;" href="#create_post" class="pc-nav-item-link"><img src="/static/img/plus.png" alt="" width="18px"> 投稿を作成</a>
         </li>
         <li class="pc-nav-item">
-          <a href="/profile/{{ current_user.username }}" class="pc-nav-item-link">プロフィール</a>
+          <a  style="color: black;" href="/profile/{{ current_user.username }}" class="pc-nav-item-link"><img src="/static/img/profile-user.png" alt="" width="18px"> プロフィール</a>
         </li>
 
         <!-- 以下の2つはuser情報があったらログアウト、user情報がない場合はentryを返す -->
         {% if current_user.is_authenticated%}
         <li class="pc-nav-item">
-          <a href="/logout" class="pc-nav-item-link">ログアウト</a>
+          <a  style="color: black;" href="/logout" class="pc-nav-item-link">ログアウト</a>
         </li>
         {% else %}
         <li class="pc-nav-item">
-          <a href="/entry" class="pc-nav-item-link">サインイン</a>
+          <a style="color: black;"  href="/entry" class="pc-nav-item-link">サインイン</a>
         </li>
         {% endif %}
 
@@ -93,7 +94,7 @@
       {% block content %}
       {% endblock %}
     </div>
-    
+  </div>
     {% block script %}
     {% endblock %}
 

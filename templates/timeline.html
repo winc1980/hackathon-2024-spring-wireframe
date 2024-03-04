@@ -49,7 +49,7 @@
 
   <div>
     {{ send_post.mission_title.label(class="form-control-label") }}
-    {{ send_post.mission_title(class="form-control")}}
+    {{ send_post.mission_title(class="form-control", value="Yesしか言えないDay!")}}
   </div>
   <div class="form-group">
     {{ send_post.submit(class="btn") }}
@@ -92,7 +92,7 @@
 
         var post_img = document.createElement("img");
         post_img.setAttribute('class', 'post-img');
-        post_img.src = 'data:image/png;base64,${posts[i].image_data}';
+        post_img.src = `data:image/png;base64,${posts[i].image_data}`;
         post_img_wrapper.appendChild(post_img);
         
       var post_fav = document.createElement("div");
