@@ -1,5 +1,8 @@
 # hackathon-2024-spring-wireframe
 
+# 発表資料
+https://www.canva.com/design/DAF9z1gpOr0/JRJO0h6-tjildBp6X0huGA/edit?utm_content=DAF9z1gpOr0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 
 # ローカル環境でテストする場合のmysql
 0. mysqlをダウンロードする。Macユーザーでhomebrew使っているならHomeberwでダウンロードしてパスを通す
