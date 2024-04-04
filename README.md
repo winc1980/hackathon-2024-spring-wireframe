@@ -1,4 +1,5 @@
 # hackathon-2024-spring-wireframe
+2024年2月に開催したハッカソンのグループ2の作品 "Randaction(ランダクション)"です。
 
 # 発表資料
 https://www.canva.com/design/DAF9z1gpOr0/JRJO0h6-tjildBp6X0huGA/edit?utm_content=DAF9z1gpOr0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
